@@ -8,5 +8,4 @@
 **Note: Every commented function will be signed by contributors.**
 
 
-
-##im trying to see how this works
+I have no clue what this dose
