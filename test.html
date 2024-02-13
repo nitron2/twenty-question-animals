@@ -4,11 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FEMA login page</title>
+    <link rel="stylesheet" href="styles.css">
     <!-- You can include additional meta tags, link to stylesheets, or scripts in the head section -->
 </head>
 <body>
-    <!-- Your content goes here -->
+    <!-- This is a test to see how this all gets altered, second body 
+    is where there is a actual form and shows how data can be handled -->
     <h1>This is Kinda gay</h1>
     <p>Can I alter the file from the Source Control Section </p>
+    <textarea> What does this do?</textarea>
+</body>
+<body id="form">
+    <form action="/submit-form" method="post">
+        <label for="userInput">Enter Text:</label>
+        <input type="text" id="userInput" name="userInput">
+        <input type="submit" value="Submit">
+    </form>
+    <!--
+    In this example, when the user submits the form, it will send a 
+    POST request to the "/submit-form" endpoint. You can replace 
+    "/submit-form" with the URL or endpoint where you want to handle 
+    the form data.
+
+    If the action attribute is not specified, the form data will be 
+    sent to the same page. You can then use server-side programming 
+    (like PHP, Node.js, Python, etc.) to process the form data.
+    
+    If you want to handle the form data using JavaScript, you can use 
+    the onsubmit attribute in the form tag and write a JavaScript 
+    function to handle the submission.
+    -->
 </body>
 </html>
