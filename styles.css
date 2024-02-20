@@ -1,10 +1,24 @@
 body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
+    padding: 16px;
+
+  }
+  
+  .card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 16px;
     text-align: center;
-}
+    height: 100px;
+  }
 
-h1 {
-    background-color: red;
-    color: White;
-    text-align: left;
-
-}
+  .grid-container > .card:nth-child(even) {
+    margin-top: 30px; /* Adjust the margin-top value as needed */
+  }
