@@ -12,19 +12,27 @@
     <!-- This is a test to see how this all gets altered, second body 
     is where there is an actual form and shows how data can be handled -->
     <h1>This is Kinda gay</h1>
-    <p>Can I alter the file from the Source Control Section </p>
+    <p>This right here will eventually become our search bar but it will be handled like card but a search thingy </p>
     <textarea> What does this do?</textarea>
 </body>
 <body id="form">
+
+  <!-- TODO: START HERE -->
+  <!-- THIS SECTION: This entire form will be handled like the cardContainer below
+  very little actual HTML will be writen and just a referene to the script.js funtion.
+  This will be confusing at first but it will allow us to later incorperate server. -->
     <form action="/submit-form" method="post">
         <label for="userInput">Enter Text:</label>
         <input type="text" id="userInput" name="userInput">
         <input type="submit" value="Submit">
     </form>
-
+  
+  <!-- Example:--> 
+  <!-- This calls function in script.js that creates elements and the elements within
+      Like this we can easily see a layout and what is where and use stylesheet to adjust
+      the looks, JS for logic and this for layout.-->
     <div class="grid-container" id="cardContainer"></div>
-    <div class="grid-container" id="anotherCardContainer"></div>
-    
+  <!-- TODO: END HERE -->
     
 </body>
 </html>

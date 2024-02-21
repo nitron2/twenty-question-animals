@@ -25,3 +25,13 @@ body {
 .grid-container > .card:nth-child(even) {
   margin-top: 30px; /* Adjust the margin-top value as needed */
 }
+
+/* this is how you can adjust the cards style */
+.card-container {
+  font-style: italic;
+  color: #555;
+}
+
+.card-container p .first-word {
+  font-weight: bold;
+}
