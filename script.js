@@ -45,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
             containerDiv.className = 'card-container';
 
         // STEP 2. Create the elements
+
+            // Create an Span element
+            var spanElement = document.createElement('span');
             // Create an img element
             var imageElement = document.createElement('img');
             // Create Descrption Paragraph Element
@@ -52,25 +55,40 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create Item Paragraph Element
             var itemParagraph = document.createElement('p');
 
+        // STEP 3.5 Give element a class if it needs it
+            // no worky: spanElement.classList.add('descriptionSpan', 'itemSpan');
+            // no worky: spanElement.className = 'first-word';
 
         // STEP 3. Link the elements to their Data
+
+        //SPAN NO WORKY
+            //spanElement.textContent = 'Description: ';
+            // no worky: descriptionSpan.textContent = 'Description: ';
+            // no worky: itemSpan.textContent = 'Items: ';
+
+        //IMG
             // info for img to put in Card
             imageElement.src = 'imgTest/' + myImageListTEST[i];
             // info for data to put in Description Paragraph
 
+        //DESCRIPTION
             // to add a span to make just description Bold you need to create a span element
             // then later you need to append them together.
-            descriptionParagraph.textContent = 'Description: ' + myDescriptionListTEST[i];
+            
+            // no worky: descriptionParagraph.appendChild(descriptionSpan);
+            // no worky: descriptionParagraph.appendChild(document.createTextNode(myDescriptionListTEST[i]));
+
+            descriptionParagraph.textContent = myDescriptionListTEST[i];
 
 
-
+        //ITEMS
             // info for data to put in Items Paragraph
                 // this now inputs 3 of the items from my item list to the card
                 // so we can see what 
             for (let index = 0; index < myItemListTEST.length; index++) {
                 // TODO: add ranNum generator which chooses a few key items from list to display
                 // learned about slice its pretty neat
-                itemParagraph.textContent = 'Items: ' + myItemListTEST.slice(0).join(', ');
+                itemParagraph.textContent = myItemListTEST.slice(0).join(', ');
             }
     
         // STEP 4. attach the elements to the div they belong in
