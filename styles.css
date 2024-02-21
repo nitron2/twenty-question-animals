@@ -1,24 +1,27 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 16px;
-    padding: 16px;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-  }
-  
-  .card {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 16px;
-    text-align: center;
-    height: 100px;
-  }
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  padding: 16px;
+}
 
-  .grid-container > .card:nth-child(even) {
-    margin-top: 30px; /* Adjust the margin-top value as needed */
-  }
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 16px;
+  text-align: center;
+  height: 500px;
+}
+
+.card img {
+  width: 100%;
+}
+
+.grid-container > .card:nth-child(even) {
+  margin-top: 30px; /* Adjust the margin-top value as needed */
+}

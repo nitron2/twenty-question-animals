@@ -4,7 +4,7 @@
 ## Goals:
 [ ] Figure out all required inputs and how to handle them
 [ ] HTML w/css front page\
-[ ] Javascript for the logic for dealing with data\
+[X] Javascript for the logic for dealing with data\
 [ ] Choose a database, SQLite potentially?\
 [ ] Make list of functions that are needed\
 [ ] Find busdrivers eyes\

@@ -6,10 +6,11 @@
     <title>FEMA login page</title>
     <link rel="stylesheet" href="styles.css">
     <!-- You can include additional meta tags, link to stylesheets, or scripts in the head section -->
+    <script src="script.js" defer></script>
 </head>
 <body>
     <!-- This is a test to see how this all gets altered, second body 
-    is where there is a actual form and shows how data can be handled -->
+    is where there is an actual form and shows how data can be handled -->
     <h1>This is Kinda gay</h1>
     <p>Can I alter the file from the Source Control Section </p>
     <textarea> What does this do?</textarea>
@@ -20,22 +21,10 @@
         <input type="text" id="userInput" name="userInput">
         <input type="submit" value="Submit">
     </form>
-      
-      
-      
-      <div class="grid-container" id="cardContainer"></div>
 
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var cardContainer = document.getElementById('cardContainer');
+    <div class="grid-container" id="cardContainer"></div>
+    <div class="grid-container" id="anotherCardContainer"></div>
     
-          for (var i = 1; i <= 100; i++) {
-            var card = document.createElement('div');
-            card.className = 'card';
-            card.textContent = 'Card ' + i;
-            cardContainer.appendChild(card);
-          }
-        });
-      </script>
+    
 </body>
 </html>
