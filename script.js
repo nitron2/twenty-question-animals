@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Call createCards function for the first time
     createCards('cardContainer', myImageListTEST.length);
 
-    
-
 
     // loop to go through all cards
     for (var i = 0; i <=myImageListTEST.length; i++) { 
@@ -78,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // no worky: descriptionParagraph.appendChild(descriptionSpan);
             // no worky: descriptionParagraph.appendChild(document.createTextNode(myDescriptionListTEST[i]));
 
-            descriptionParagraph.textContent = myDescriptionListTEST[i];
+            descriptionParagraph.textContent = 'Description: ' + myDescriptionListTEST[i];
 
 
         //ITEMS
@@ -88,7 +86,8 @@ document.addEventListener('DOMContentLoaded', function() {
             for (let index = 0; index < myItemListTEST.length; index++) {
                 // TODO: add ranNum generator which chooses a few key items from list to display
                 // learned about slice its pretty neat
-                itemParagraph.textContent = myItemListTEST.slice(0).join(', ');
+                itemParagraph.textContent = 'Items: ' + myItemListTEST.slice(0).join(', ');
+            
             }
     
         // STEP 4. attach the elements to the div they belong in
@@ -103,4 +102,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     // Add more scripts or call createCards again as needed...
+    function PopUp(containerId){
+        var cardContainer = document.getElementById(containerId);
+        cardContainer.addEventListener('click', function(){
+            console.log('card clicked');
+        })
+    };
 });
+
+
