@@ -15,6 +15,7 @@
 ## Non-Goals:
 [ ] Add more features than are required\
 [ ] Don't overcomplicate the process\
+[ ] Gotta test if git is working
 
 **Note: Every commented function will be signed by contributors.**
 
