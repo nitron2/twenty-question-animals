@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEMA login page</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- You can include additional meta tags, link to stylesheets, or scripts in the head section -->
+    <script src="script.js" defer></script>
+</head>
+<form class="loginForm" id="form0">
+    <fieldset>
+        <legend>Login</legend>
+        <label>Username:</label>
+        <input></input>
+        <label>Password:</label>
+        <input onchange="showNextFormTest(0,1)"></input>
+    </fieldset>
+</form>
+
+<form class="disasterForm" id="form01">
+    <fieldset>
+        <legend>Disaster</legend>
+        <label>Disaster 1</label>
+        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(1,1)"></input>
+        <label>Disaster 2</label>
+        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(1,1)"></input>
+        <label>Disaster 3</label>
+        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(1,1)"></input>
+    </fieldset>
+</form>
+
+<form class="optionsForm" id="form11">
+    <fieldset>
+        <legend>Options</legend>
+        <label >Needed Items</label>
+        <input type="radio" name="optionsBttn" onchange="showNextFormTest(2,1)"></input>
+        <label>Needed Help</label>
+        <input type="radio" name="optionsBttn" onchange="showNextFormTest(2,2)"></input>
+        <label>Adjust Database</label>
+        <input type="radio" name="optionsBttn" onchange="showNextFormTest(2,3)"></input>
+    </fieldset>
+</form>
+
+<form class="itemsForm" id="form21">
+    <fieldset>
+        <legend>Needed Items</legend>
+        <label>Items we need:</label>
+        <ul id="vList">
+            <li>item1</li>
+            <button onclick="createListItem()">Create List</button>
+        </ul>
+    </fieldset>
+</form>
+
+<form class="itemsForm" id="form22">
+    <fieldset>
+        <legend>Form 4</legend>
+        <label>Items we need:</label>
+        <ul id="vList">
+            <li>item1</li>
+            <button onclick="createListItem()">Create List</button>
+        </ul>
+    </fieldset>
+</form>
+
+<form class="itemsForm" id="form23">
+    <fieldset>
+        <legend>Form 5</legend>
+        <label>Items we need:</label>
+        <ul id="vList">
+            <li>item1</li>
+            <button onclick="createListItem()">Create List</button>
+        </ul>
+    </fieldset>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
