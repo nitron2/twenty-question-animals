@@ -8,72 +8,68 @@
     <!-- You can include additional meta tags, link to stylesheets, or scripts in the head section -->
     <script src="script.js" defer></script>
 </head>
-<form class="loginForm" id="form0">
+<form class="form0" id="form0">
     <fieldset>
         <legend>Login</legend>
         <label>Username:</label>
         <input></input>
         <label>Password:</label>
-        <input onchange="showNextFormTest(0,1)"></input>
+        <input></input>
+        <button type="button" onclick="showNextFormTest(1,1)">submit</button>
     </fieldset>
 </form>
 
-<form class="disasterForm" id="form01">
+<form class="form01" id="form11">
     <fieldset>
         <legend>Disaster</legend>
         <label>Disaster 1</label>
-        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(1,1)"></input>
+        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(2,1)"></input>
         <label>Disaster 2</label>
-        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(1,1)"></input>
+        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(2,1)"></input>
         <label>Disaster 3</label>
-        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(1,1)"></input>
+        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(2,1)"></input>
     </fieldset>
 </form>
 
-<form class="optionsForm" id="form11">
+<form class="form11" id="form21">
     <fieldset>
         <legend>Options</legend>
-        <label >Needed Items</label>
-        <input type="radio" name="optionsBttn" onchange="showNextFormTest(2,1)"></input>
+        <label>Needed Items</label>
+        <input type="radio" name="optionsBttn" id="radioBtn1" onchange="showNextFormTest(3,1)"></input>
         <label>Needed Help</label>
-        <input type="radio" name="optionsBttn" onchange="showNextFormTest(2,2)"></input>
+        <input type="radio" name="optionsBttn" id="radioBtn2" onchange="showNextFormTest(3,2)"></input>
         <label>Adjust Database</label>
-        <input type="radio" name="optionsBttn" onchange="showNextFormTest(2,3)"></input>
+        <input type="radio" name="optionsBttn" id="radioBtn3" onchange="showNextFormTest(3,3)"></input>
     </fieldset>
 </form>
 
-<form class="itemsForm" id="form21">
+
+
+<form class="itemForm" id="form31">
     <fieldset>
         <legend>Needed Items</legend>
         <label>Items we need:</label>
-        <ul id="vList">
-            <li>item1</li>
-            <button onclick="createListItem()">Create List</button>
-        </ul>
+        <ul id="vList1"></ul>
     </fieldset>
 </form>
 
-<form class="itemsForm" id="form22">
+<form class="helpForm" id="form32">
     <fieldset>
-        <legend>Form 4</legend>
+        <legend>Needed Help</legend>
         <label>Items we need:</label>
-        <ul id="vList">
-            <li>item1</li>
-            <button onclick="createListItem()">Create List</button>
-        </ul>
+        <ul id="vList2"></ul>
     </fieldset>
 </form>
 
-<form class="itemsForm" id="form23">
+<form class="adjustForm" id="form33">
     <fieldset>
-        <legend>Form 5</legend>
+        <legend>Adjust Database</legend>
         <label>Items we need:</label>
-        <ul id="vList">
-            <li>item1</li>
-            <button onclick="createListItem()">Create List</button>
-        </ul>
+        <ul id="vList3"></ul>
     </fieldset>
 </form>
+
+<button onclick="resetPage()">Reset Page</button>
 
 
 
