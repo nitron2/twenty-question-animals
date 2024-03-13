@@ -21,13 +21,16 @@
 # Quick Start Guide:
 
 1. Install Node.js: https://nodejs.org/dist/v20.11.1/node-v20.11.1.pkg
-2. Install XAMPP: https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/8.2.12/xampp-linux-x64-8.2.12-0-installer.run
-3. Copy entire database driectory and contents to "/Applications/XAMPP/xamppfiles/var/mysql/" 
+2. Install XAMPP: https://www.apachefriends.org/
+3. Our database is located in the "database" directory, which is within this directory. Copy that databse folder to "/Applications/XAMPP/xamppfiles/var/mysql/" Note: You may need to start XAMPP mySQL server for the first time in order to see the /var folder.
 4. Start the Apache and mySQL servers in XAMMP (for Mac, this will be called "manager-osx" with a gear icon)
 5. Go to http://localhost/phpmyadmin/ 
 6. Whenever you make changes to the database, copy the folder into database directory. This will allow us to collaborate on the database.
 
 ## To run an application, type 'nodemon app.js'. This way you can see changes in real time.
+
+# Commands:
+- npx nodemon app.js
 
 
 # The art of Good Git Commit Messages:
