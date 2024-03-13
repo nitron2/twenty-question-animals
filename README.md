@@ -1,5 +1,4 @@
-# chainsaw-fire
-## FEMA website class project
+# chainsaw-fire: FEMA website class project
 
 ## Goals:
 [ ] Figure out all required inputs and how to handle them
@@ -19,17 +18,27 @@
 
 **Note: Every commented function will be signed by contributors.**
 
-# Instructions:
+# Quick Start Guide:
 
 1. Install Node.js: https://nodejs.org/dist/v20.11.1/node-v20.11.1.pkg
 2. Install XAMPP: https://sourceforge.net/projects/xampp/files/XAMPP%20Linux/8.2.12/xampp-linux-x64-8.2.12-0-installer.run
-3. Start the Apache and mySQL servers in XAMMP (for Mac, this will be called "manager-osx" with a gear icon)
-4. Go to http://localhost/phpmyadmin/ 
+3. Copy entire database driectory and contents to "/Applications/XAMPP/xamppfiles/var/mysql/" 
+4. Start the Apache and mySQL servers in XAMMP (for Mac, this will be called "manager-osx" with a gear icon)
+5. Go to http://localhost/phpmyadmin/ 
+6. Whenever you make changes to the database, copy the folder into database directory. This will allow us to collaborate on the database.
 
 ## To run an application, type 'nodemon app.js'. This way you can see changes in real time.
 
-Tutorial: https://www.youtube.com/watch?v=vrj9AohVhPA&list=PLnqhWGNR9f9--oV4PHu1-Z8Yx8HlELQgd&index=2&t=2263s&ab_channel=NsquaredCoding
 
-# When creating git commit messages:
+# The art of Good Git Commit Messages:
 
 https://cbea.ms/git-commit/#seven-rules
+
+Tutorial: https://www.youtube.com/watch?v=vrj9AohVhPA&list=PLnqhWGNR9f9--oV4PHu1-Z8Yx8HlELQgd&index=2&t=2263s&ab_channel=NsquaredCoding
+
+# Log:
+
+## Hayden:
+
+ - Learning Web Development: 14 hrs:
+ - Setting up development environment: 2 hrs
