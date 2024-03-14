@@ -45,3 +45,4 @@ Tutorial: https://www.youtube.com/watch?v=vrj9AohVhPA&list=PLnqhWGNR9f9--oV4PHu1
 
  - Learning Web Development: 14 hrs:
  - Setting up development environment: 2 hrs
+ - Create Database: 1 hr
