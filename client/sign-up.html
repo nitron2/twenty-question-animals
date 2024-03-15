@@ -1,117 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FEMA login page</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
-    <!-- You can include additional meta tags, link to stylesheets, or scripts in the head section -->
-    <script src="js/sign-up.js" defer></script>
+    <title>Signup</title>
+    <link rel="stylesheet" href="../client/css/sign-up.css">
 </head>
-<form class="form0" id="form0">
-    <fieldset>
-        <legend>Login</legend>
-        <label>Username:</label>
-        <input></input>
-        <br>
-        <label>Password:</label>
-        <input></input>
-        <br>
-        <button type="button" onclick="showNextFormTest(1,1)">submit</button>
-    </fieldset>
-</form>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h1 id="title">Sign Up</h1>
+            <form>
+                <div class="input-group">
+                    <div class="input-field" id="nameField">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="name" name="name" placeholder="Name">
+                    </div>
 
-<form class="form01" id="form11">
-    <fieldset>
-        <legend>Disaster</legend>
-        <label>Disaster 1</label>
-        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(2,1)"></input>
-        <label>Disaster 2</label>
-        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(2,1)"></input>
-        <label>Disaster 3</label>
-        <input type="radio" name="disasterBttn"  onchange="showNextFormTest(2,1)"></input>
-    </fieldset>
-</form>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" name="email" placeholder="Email">
+                    </div>
 
-<form class="form11" id="form21">
-    <fieldset>
-        <legend>Options</legend>
-        <label>Needed Items</label>
-        <input type="radio" name="optionsBttn" id="radioBtn1" onchange="showNextFormTest(3,1)"></input>
-        <label>Needed Help</label>
-        <input type="radio" name="optionsBttn" id="radioBtn2" onchange="showNextFormTest(3,2)"></input>
-        <label>Adjust Database</label>
-        <input type="radio" name="optionsBttn" id="radioBtn3" onchange="showNextFormTest(3,3)"></input>
-    </fieldset>
-</form>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="password" name="password" placeholder="Password">
+                        <h2>
+                            I am a...
+                        </h2>
 
+                    <input type="radio" id="colorRed" name="type" value="General">
+                    <label for="colorRed">General Volunteer</label><br>
+                    
+                    <input type="radio" id="colorBlue" name="type" value="Organization" checked>
+                    <label for="colorBlue">Organization</label><br>
+                    
+                    <input type="radio" id="colorGreen" name="type" value="Doctor">
+                    <label for="colorGreen">Doctor</label><br>
 
-
-<form class="itemForm" id="form31">
-    <fieldset>
-        <legend>Needed Items</legend>
-        <label>Items we need:</label>
-        <ul id="vList1"></ul>
-    </fieldset>
-</form>
-
-<form class="helpForm" id="form32">
-    <fieldset>
-        <legend>Needed Help</legend>
-        <label>Items we need:</label>
-        <ul id="vList2"></ul>
-    </fieldset>
-</form>
-
-<form class="adjustForm" id="form33">
-    <fieldset>
-        <legend>Adjust Database</legend>
-        <label>Items we need:</label>
-        <ul id="vList3"></ul>
-    </fieldset>
-</form>
-
-<button onclick="resetPage()">Reset Page</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    <input type="radio" id="colorGreen" name="type" value="Social Worker">
+                    <label for="colorGreen">Social Worker</label><br>
+                    
+                </div>
+                <div class="btn-field">
+                    <button type="submit" id="signUpButton">Sign Up</button>                </div>
+            </form>
+        </div>
+    </div>
+<script>
+    
+</script>
+</body>
 </html>

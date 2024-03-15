@@ -14,7 +14,10 @@
 ## Non-Goals:
 [ ] Add more features than are required\
 [ ] Don't overcomplicate the process\
-[ ] Gotta test if git is working
+[ ] style.css\
+[ ] Mobile-friendly\
+[ ] Dark mode\
+[ ] Security
 
 **Note: Every commented function will be signed by contributors.**
 
@@ -33,15 +36,18 @@
 - npx nodemon app.js
 
 
-# The art of Good Git Commit Messages:
+## The art of Good Git Commit Messages:
 
 https://cbea.ms/git-commit/#seven-rules
 
-Tutorial: https://www.youtube.com/watch?v=vrj9AohVhPA&list=PLnqhWGNR9f9--oV4PHu1-Z8Yx8HlELQgd&index=2&t=2263s&ab_channel=NsquaredCoding
+## Tutorials Hayden has used that are helpful: 
+https://youtube.com/playlist?list=PLnqhWGNR9f9--oV4PHu1-Z8Yx8HlELQgd&si=2tvHg_H2gn3ZIunx
 
-# Log:
+# Log
 
-## Hayden:
+ Hayden:
 
- - Learning Web Development: 14 hrs:
- - Setting up development environment: 2 hrs
+ - Learning Web Development: 14 hr
+ - Setting up development environment: 2 hr
+ - Refactoring 1 hr
+ - Adding sign-up/sign in form 2 hr
