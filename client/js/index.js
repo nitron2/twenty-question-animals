@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //IMG
             // info for img to put in Card
-            imageElement.src = 'imgTest/' + myImageListTEST[i];
+            imageElement.src = 'img/' + myImageListTEST[i];
             // info for data to put in Description Paragraph
 
         //DESCRIPTION
