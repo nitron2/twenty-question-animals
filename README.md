@@ -4,7 +4,7 @@
 [ ] Figure out all required inputs and how to handle them
 [ ] HTML w/css front page\
 [X] Javascript for the logic for dealing with data\
-[ ] Choose a database, SQLite potentially?\
+[x] Choose a database, SQLite potentially?\
 [ ] Make list of functions that are needed\
 [ ] Find busdrivers eyes\
 [ ] Ensure all requirements are met\
@@ -17,7 +17,9 @@
 [ ] style.css\
 [ ] Mobile-friendly\
 [ ] Dark mode\
-[ ] Security
+[ ] Security\
+[ ] Input Validation\
+[ ] Users having multiple types
 
 **Note: Every commented function will be signed by contributors.**
 
@@ -50,4 +52,4 @@ https://youtube.com/playlist?list=PLnqhWGNR9f9--oV4PHu1-Z8Yx8HlELQgd&si=2tvHg_H2
  - Learning Web Development: 14 hr
  - Setting up development environment: 2 hr
  - Refactoring 1 hr
- - Adding sign-up/sign in form 2 hr
+ - Adding sign-up/sign in form 5.0 hr

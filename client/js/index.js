@@ -108,6 +108,60 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('card clicked');
         })
     };
+
+
+    const addNameButton = document.getElementById("add-name-button")
+
+addNameButton.onclick = function() {
+    const nameInputField = document.getElementById("name-input")
+    const nameStr = nameInputField.value
+    console.log(nameStr)
+    nameInputField.value = " "
+
+    fetch("http://127.0.0.1:5002/insert", {
+        headers: {
+            'Content-type' : 'application/json'// What even are naming conventions?!
+        },
+        method: 'POST',
+        body: JSON.stringify({name: nameStr})
+    }) // These are routes, I am told.
+    .then(response => response.json())
+    .then(data => insertRowsIntoTable(data['data']))
+    .catch(error => console.log(error)); //Handle errors in the backend
+    console.log
+}
+
+const refreshButton = document.getElementById("refresh-button")
+refreshButton.onclick = function() {
+    fetch('http://127.0.0.1:5002/getAll')
+    .then(response => response.json()) 
+    .then(data => loadHTMLTable(data['data']));
+}
+
+function insertRowsIntoTable(data) {
+    
+}
+
+function loadHTMLTable(data) {
+    console.log('hi!')
+    const tableBody = document.querySelector('table tbody')
+    if (data.length === 0) {
+        tableBody.innerHTML =  "<tr><td class = 'no-data' colspan='5'>No Data</td><tr>"
+        return
+    }
+    let tableHtml = ""; // Appearantly our aim is to concat strings.
+    data.forEach(function ({id, name, date_added}) {
+        tableHtml += '<tr>';
+        tableHtml += '<td>${id}</td>';
+        tableHtml += '<td>${name}</td>';
+        tableHtml += '<td>${new Date(date_added).toLocaleString()}</td>';
+        tableHtml += '<td><button class="delete-row-button" data-id=&{id}>Delete</button></td>';
+        tableHtml += '<td><button class="edit-row-button" data-id=&{id}>Edit</button></td>';
+    });
+
+    table.innerHTML = tableHtml;
+}
+
 });
 
 
