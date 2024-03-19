@@ -49,7 +49,9 @@ https://youtube.com/playlist?list=PLnqhWGNR9f9--oV4PHu1-Z8Yx8HlELQgd&si=2tvHg_H2
 
  Hayden:
 
- - Learning Web Development: 14 hr
+ - Learning Web Development General: 14 hr
  - Setting up development environment: 2 hr
- - Refactoring 1 hr
+ - Refactoring all front-end: 1 hr
  - Adding sign-up/sign in form 5.0 hr
+ - Creating Sign-in back-end: 0.5 hr
+ - Debugging Sign-in back-end: 5 hr
