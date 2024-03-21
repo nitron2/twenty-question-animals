@@ -13,6 +13,16 @@ app.use(express.urlencoded({extended : false}))
 // Here we create our routes. Read more about routes 
 // HB
 
+// Require the upload middleware
+const upload = require('./upload');
+
+// TODO: Validate that image is of specific type:
+// Set up a route for file uploads
+app.post('/upload', upload.single('file'), (request, response) => {
+  // Handle the uploaded file
+  response.send('File uploaded successfully.')
+});
+
 // create
 app.post('/signup', (request, response) => {
     const { name, email, password, type } = request.body; 

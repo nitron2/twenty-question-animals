@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FEMA login page</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
     <!-- You can include additional meta tags, link to stylesheets, or scripts in the head section -->
     <script src="js/create-disaster.js" defer></script>
@@ -21,6 +21,11 @@
         <button type="button" onclick="showNextFormTest(1,1)">submit</button>
     </fieldset>
 </form>
+
+<form action="http://127.0.0.1:5003/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" > <!--required>-->
+    <button type="submit">Upload</button>
+  </form>
 
 <form class="form01" id="form11">
     <fieldset>
@@ -45,7 +50,6 @@
         <input type="radio" name="optionsBttn" id="radioBtn3" onchange="showNextFormTest(3,3)"></input>
     </fieldset>
 </form>
-
 
 
 <form class="itemForm" id="form31">
@@ -73,45 +77,5 @@
 </form>
 
 <button onclick="resetPage()">Reset Page</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </html>
