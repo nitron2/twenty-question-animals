@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2024 at 12:36 AM
+-- Generation Time: Mar 24, 2024 at 09:49 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -27,12 +27,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `disasters`
 --
 
-
 CREATE TABLE `disasters` (
   `id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
   `city` varchar(32) NOT NULL,
-  `picture` varchar(128) NOT NULL
+  `picture` varchar(128) NOT NULL DEFAULT 'placeholder.jpeg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -137,7 +136,7 @@ ALTER TABLE `warehouses`
 -- AUTO_INCREMENT for table `disasters`
 --
 ALTER TABLE `disasters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -71,3 +71,7 @@ multer: https://www.freecodecamp.org/news/simplify-your-file-upload-process-in-e
  - Adding sign-up/sign in form 5.0 hr
  - Creating Sign-in back-end: 0.5 hr
  - Debugging Sign-in back-end: 5 hr
+ - General Database debugging: 1 hr
+ - Create feature for Create Disaster Page: Image Upload: 1 hr
+ - Debug feature for Create Disaster Page: Image Upload: 2 hr
+ - Create Disaster Page Debugging: 0.5 hr

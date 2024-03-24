@@ -14,14 +14,23 @@ app.use(express.urlencoded({extended : false}))
 // HB
 
 // Require the upload middleware
-const upload = require('./upload');
+const upload = require('./upload-disaster-image');
 
 // TODO: Validate that image is of specific type:
 // Set up a route for file uploads
-app.post('/upload', upload.single('file'), (request, response) => {
+app.post('/upload-disaster-image', upload.single('file'), (request, response) => {
   // Handle the uploaded file
-  response.send('File uploaded successfully.')
+  response.send('Disaster created successfully.')
 });
+
+app.post('/create-disaster', (request, response) => {
+    const { type, city, picture} = request.body; 
+    const db = crudService.getCrudServiceIstance();
+    const result = db.createNewDisaster(type, city, picture);
+    result
+    .catch(error => console.log(error));
+});
+
 
 // create
 app.post('/signup', (request, response) => {
@@ -46,7 +55,6 @@ app.get('/getAll', (request, response) => {
     response.json({
         success: true
     });
-
 })
 // update
 

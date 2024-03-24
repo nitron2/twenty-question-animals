@@ -139,5 +139,24 @@ th, td {
       font-weight: bold;
       font-size: 1.2em;
   }
+
+  main {
+    width: 50%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+table {
+    margin: 10000px auto;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+}
       
     

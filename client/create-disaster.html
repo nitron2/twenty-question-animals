@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FEMA login page</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap">
+    <!--<link rel="stylesheet" href="../css/styles.css"> -->
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"> -->
     <!-- You can include additional meta tags, link to stylesheets, or scripts in the head section -->
     <script src="js/create-disaster.js" defer></script>
 </head>
-<form class="form0" id="form0">
+<!--<form class="form0" id="form0">
     <fieldset>
         <legend>Login</legend>
         <label>Username:</label>
@@ -21,12 +21,70 @@
         <button type="button" onclick="showNextFormTest(1,1)">submit</button>
     </fieldset>
 </form>
+-->
+<h1> Create new Disaster</h1>
+<form id="createDisasterForm" action="http://127.0.0.1:5003/create-disaster" method="POST" enctype="multipart/form-data">
+    <h2>Basic Information:</h2>
+    <label>City:</label>
+    <input id="city"></input>
+    <br>
+    <label>Type:</label>
+    <input id="type"></input>
+    <br>
+    <br>
+    <label>Upload an image for the disaster</label>
+    <input type="file" id="fileInput" name="file" required> <!--required>-->
+    <h2>Needs:</h2>
+    <table id="table">
+        <tbody>
+            <tr>Need, Quantity</tr>
+            <br>
+                <input type="text" id="need1-name" required> <!--required>-->
+                <input type="text" id="need1-quantity" required> <!--required>-->
+            </tr>
+            <br>
+            <tr>
+                <input type="text" id="need2-name" required> <!--required>-->
+                <input type="text" id="need2-quantity" required> <!--required>-->
+            </tr>
+            <br>
+            <tr>
+                <input type="text" id="need3-name" required> <!--required>-->
+                <input type="text" id="need3-quantity" required> <!--required>-->
+            </tr>
+            <br>
+            <tr>
+                <input type="text" id="need4-name" required> <!--required>-->
+                <input type="text" id="need4-quantity" required> <!--required>-->
+            </tr>
+            <br>
+            <tr>
+                <input type="text" id="need5-name" required> <!--required>-->
+                <input type="text" id="need6-quantity" required> <!--required>-->
+            </tr>
+            <br>
+            <tr>
+                <input type="text" id="need7-name" required> <!--required>-->
+                <input type="text" id="need7-quantity" required> <!--required>-->
+            </tr>
+            <br>
+            <tr>
+                <input type="text" id="need8-name" required> <!--required>-->
+                <input type="text" id="need8-quantity" required> <!--required>-->
+            </tr>
+            <br>
+            <tr>
+                <input type="text" id="need9-name" required> <!--required>-->
+                <input type="text" id="need9-quantity" required> <!--required>-->
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <button onclick="sumbitCreateDisasterForm(event)" type="button">Done</button>
 
-<form action="http://127.0.0.1:5003/upload" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file" > <!--required>-->
-    <button type="submit">Upload</button>
-  </form>
+  <div id="imageUploadStatus"></div> <!-- To display the upload status -->
 
+<!--
 <form class="form01" id="form11">
     <fieldset>
         <legend>Disaster</legend>
@@ -76,6 +134,8 @@
     </fieldset>
 </form>
 
+
 <button onclick="resetPage()">Reset Page</button>
+-->
 
 </html>

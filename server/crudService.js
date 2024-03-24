@@ -42,7 +42,7 @@ class CrudService {
             const insertId = await new Promise((resolve, reject) => { 
                 // We have seen this in server application development before (Villafañe).
                 //const query = "INSERT INTO `people`(`id`, `name`, `date_added`) VALUES ('1','hayden','December 17, 1995 03:24:00'))"
-                const query = "INSERT INTO fema.users (name, email, password, type) VALUES (?, ?, ?, ?);"
+                const query = "INSERT INTO users (name, email, password, type) VALUES (?, ?, ?, ?);"
                  // Parameterize to prevent SQL injection 
                 //pool.query(query, (error, result) => { 
                     // Callback function, or so I'm told.
@@ -53,6 +53,26 @@ class CrudService {
                     // Callback function, or so I'm told.
                     if (error) reject(new Error(error.message))
                     resolve(result) // What does resolve do, specifically?
+                })
+            })
+            console.log(insertId)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async createNewDisaster(type, city, picture) {
+        console.log("trying to insert " + type + ": " + city + " " + picture + " into db.")
+
+        try {   
+            const insertId = await new Promise((resolve, reject) => { 
+                let query
+                if (picture) {query = "INSERT INTO disasters (type, city, picture) VALUES (?, ?, ?);"}
+                else {query = "INSERT INTO disasters (type, city) VALUES (?, ?);"
+            }
+                connection.query(query, [type, city, picture], (error, result) => { 
+                    if (error) reject(new Error(error.message))
+                    resolve(result) 
                 })
             })
             console.log(insertId)
