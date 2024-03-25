@@ -2,11 +2,11 @@ let uploadedFileName
 let disasterId
 
 document.addEventListener('DOMContentLoaded', function() {
-    //const fileInput = document.getElementById('fileInput');
+    const fileInput = document.getElementById('fileInput');
 
-    //fileInput.addEventListener('change', function() {
-    //    uploadedFileName = fileInput.files[0].name
-    //})
+    fileInput.addEventListener('change', function() {
+        uploadedFileName = fileInput.files[0].name
+    })
 })
 
 function sumbitCreateDisasterForm(event) { //(event)
@@ -20,29 +20,19 @@ function sumbitCreateDisasterForm(event) { //(event)
             method: 'POST',
             body: formData, // Send the form data to the server
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            // Displaying the response message from the server
-            const message = data.message;
-            
-            // Check if the upload was successful and fileInfo is available
-            if (data.success && data.fileInfo && data.fileInfo.uploadedName) {
-                uploadedFileName = data.fileInfo.uploadedName
-                .then(response => response.json())
-                .catch(error => console.log(error)); //Handle errors in the backend
-                // Now you can use uploadedFileName as needed
-                // For example, display it along with the message
-                document.getElementById('uploadResponse').innerHTML = `${message}<br>Uploaded File Name: ${uploadedFileName}`;
+        .then(response => function() {
+            if (response.ok) {
+                const text = response.text();
+                imageUploadStatusDiv.innerHTML = text; // Display success message
             } else {
-            
-                // Handle the case where the file was not uploaded successfully or fileInfo is missing
-                document.getElementById('uploadResponse').textContent = message;
+                imageUploadStatusDiv.innerHTML = 'Failed to upload the file.';
             }
         })
-        .catch(error => {
+        .catch(error => function() {
             console.error('Error:', error);
-        });
+            imageUploadStatusDiv.innerHTML = 'Error uploading file.';
+            return
+        })
     }
 
     fetch("http://127.0.0.1:5003/create-disaster", {
@@ -56,6 +46,10 @@ function sumbitCreateDisasterForm(event) { //(event)
             picture: uploadedFileName
         })
     }) // These are routes, I am told.
+    .then(response => response.json())
+    .catch(error => console.log(error)); //Handle errors in the backend
+
+
     // now
 };
 
