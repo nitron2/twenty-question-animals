@@ -74,4 +74,4 @@ multer: https://www.freecodecamp.org/news/simplify-your-file-upload-process-in-e
  - General Database debugging: 1 hr
  - Create feature for Create Disaster Page: Image Upload: 1 hr
  - Debug feature for Create Disaster Page: Image Upload: 2 hr
- - Create Disaster Page Debugging: 0.5 hr
+ - Create Disaster Page Debugging: 6 hr
