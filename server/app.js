@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const { error } = require('console');
 const crudService = require('./crudService');
+const path = require('path');
 
 dotenv.config()
 app.use(cors())
@@ -31,6 +32,12 @@ app.post('/create-disaster', (request, response) => {
     .catch(error => console.log(error));
 });
 
+app.get('/get-disaster-image', (req, res) => {
+    const imageName = req.query.imageName; // Access the name sent by the client
+    const imagePath = path.join(__dirname, '/disaster-images', imageName);
+    res.sendFile(imagePath);
+});
+
 
 // create
 app.post('/signup', (request, response) => {
@@ -46,15 +53,12 @@ app.post('/signup', (request, response) => {
 });
  
 // read
-app.get('/getAll', (request, response) => {
+app.get('/get-all-disasters', (request, response) => {
     const db = crudService.getCrudServiceIstance()
-    const result = db.getAllData()
+    const result = db.getAllDisasters()
     result
-    .then(data => response.json({data: data}))
-    .catch(err => (console.log(err)));
-    response.json({
-        success: true
-    });
+    .then(data => response.json({data : data}))
+    .catch(err => {console.log(err)})
 })
 // update
 

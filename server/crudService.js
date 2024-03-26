@@ -61,6 +61,23 @@ class CrudService {
         }
     }
 
+    async getAllDisasters() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM disasters;";
+
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results)
+                })
+            });
+            console.log(response)
+            return response
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     async createNewDisaster(type, city, picture) {
         console.log("trying to insert " + type + ": " + city + " " + picture + " into db.")
 
