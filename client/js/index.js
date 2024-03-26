@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 typeParagraph.textContent = disaster.type;
                 cardContainer.appendChild(typeParagraph);
 
-                // NEEEDS ----------------------------------------------------
+                // NEEDS ----------------------------------------------------
                 fetch(`http://127.0.0.1:5003/get-all-needs-of-a-disaster?disasterId=${encodeURIComponent(disaster.id)}`)
                 .then(response => response.json()) // Parse the JSON from the response
                 .then(data => {
@@ -75,6 +75,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => {
                     console.error('Error fetching data: ', error); // Log any errors
                 });
+
+                // BUTTONS
+                let donate = document.createElement('button');
+                donate.textContent = "Donate";
+                cardContainer.appendChild(donate);
+
+                let volunteer = document.createElement('button');
+                volunteer.textContent = "Volunteer";
+                cardContainer.appendChild(volunteer);
+
+                let deliver = document.createElement('button');
+                deliver.textContent = "Deliver";
+                cardContainer.appendChild(deliver);
 
 
                 // Create Descrption Paragraph Element
