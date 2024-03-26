@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (specificCard) {
 
             // STßEP 1. Create a card container div
-                let containerDiv = document.createElement('div');
-                containerDiv.className = 'card-container';
+                let cardContainer = document.createElement('div');
+                cardContainer.className = 'card-container';
 
             // STEP 2. Create the elements
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const imageElement = document.createElement('img');
                     imageElement.src = imageObjectURL;
                     document.body.appendChild(imageElement);
-                    containerDiv.appendChild(imageElement);
+                    cardContainer.appendChild(imageElement);
                 })
                 .catch(error => {
                     console.error('Error fetching image:', error);
@@ -53,12 +53,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 // CITY -----------------------------------------------------
                 let cityParagraph = document.createElement('p');
                 cityParagraph.textContent = disaster.city;
-                containerDiv.appendChild(cityParagraph);
+                cardContainer.appendChild(cityParagraph);
 
                 // TYPE ------------------------------------------------------
                 let typeParagraph = document.createElement('p');
                 typeParagraph.textContent = disaster.type;
-                containerDiv.appendChild(typeParagraph);
+                cardContainer.appendChild(typeParagraph);
+
+                // NEEEDS ----------------------------------------------------
+                fetch(`http://127.0.0.1:5003/get-all-needs-of-a-disaster?disasterId=${encodeURIComponent(disaster.id)}`)
+                .then(response => response.json()) // Parse the JSON from the response
+                .then(data => {
+                    let needs = Object.values(data);
+                    needs = needs[0]
+                    for(const need of needs) {
+                        let needParagraph = document.createElement('p');
+                        needParagraph.textContent = need.name + ": " + need.quantity + "/" + need.max;
+                        cardContainer.appendChild(needParagraph);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data: ', error); // Log any errors
+                });
+
+
                 // Create Descrption Paragraph Element
                 //var descriptionParagraph = document.createElement('p');
                 // Create Item Paragraph Element
@@ -108,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // STEP 5. This links the new DIV to the Card
                 // Append the container div to the specificCard
-                specificCard.appendChild(containerDiv);
+                specificCard.appendChild(cardContainer);
             }
         }
     })

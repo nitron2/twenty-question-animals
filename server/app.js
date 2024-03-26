@@ -60,6 +60,15 @@ app.get('/get-all-disasters', (request, response) => {
     .then(data => response.json({data : data}))
     .catch(err => {console.log(err)})
 })
+
+app.get('/get-all-needs-of-a-disaster', (request, response) => {
+    const db = crudService.getCrudServiceIstance()
+    const disasterId = request.query.disasterId; // Access the name sent by the client
+    const result = db.getAllNeedsOfADisaster(disasterId)
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => {console.log(err)})
+})
 // update
 
 // delete

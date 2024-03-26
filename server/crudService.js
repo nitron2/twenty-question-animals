@@ -78,6 +78,27 @@ class CrudService {
         }
     }
 
+    async getAllNeedsOfADisaster(disasterId) {
+        if (disasterId) {
+            try {
+                const response = await new Promise((resolve, reject) => {
+                    const query = "SELECT * FROM needs WHERE needs.disaster = " + disasterId + ";";
+                    connection.query(query, (err, results) => {
+                        if (err) reject(new Error(err.message));
+                        resolve(results)
+                    })
+                });
+                console.log(response)
+                return response
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            throw new Error('No disaster Id provided')
+        }
+       
+    }
+
     async createNewDisaster(type, city, picture) {
         console.log("trying to insert " + type + ": " + city + " " + picture + " into db.")
 
