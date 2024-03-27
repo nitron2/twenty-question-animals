@@ -43,11 +43,10 @@ function addHeaderToCard(cardContainer, text) {
 
 async function addImageToCard(cardContainer, pictureName) {
     let blob = await getDisasterImageBlob(pictureName)
-    const imageObjectURL = URL.createObjectURL(blob);
-    const imageElement = document.createElement('img');
-    imageElement.src = imageObjectURL;
-    //document.body.appendChild(imageElement);
-    cardContainer.appendChild(imageElement);
+    const imageObjectURL = URL.createObjectURL(blob)
+    const imageElement = document.createElement('img')
+    imageElement.src = imageObjectURL
+    cardContainer.appendChild(imageElement)
 }
 
 async function addNeedsToCard(cardContainer,disasterId) {
