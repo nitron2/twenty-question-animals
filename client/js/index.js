@@ -29,7 +29,7 @@ function populateBlankDisastersCards(disasters) {
             addHeaderToCard(cardContainer, disaster.type)
             addImageToCard(cardContainer, disaster.picture)
             addNeedsToCard(cardContainer, disaster.id)
-            //addButtonsToCard(cardContainer)
+            addButtonsToCard(cardContainer)
             card.appendChild(cardContainer);
         }
     }
@@ -59,4 +59,18 @@ async function addNeedsToCard(disasterId) {
             cardContainer.appendChild(needParagraph);
         }
     }
+}
+
+function addButtonsToCard(cardContainer) {
+    let donate = document.createElement('button');
+    donate.textContent = "Donate";
+    cardContainer.appendChild(donate);
+
+    let volunteer = document.createElement('button');
+    volunteer.textContent = "Volunteer";
+    cardContainer.appendChild(volunteer);
+
+    let deliver = document.createElement('button');
+    deliver.textContent = "Deliver";
+    cardContainer.appendChild(deliver);
 }
