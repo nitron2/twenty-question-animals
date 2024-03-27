@@ -82,7 +82,7 @@ class CrudService {
         if (disasterId) {
             try {
                 const response = await new Promise((resolve, reject) => {
-                    const query = "SELECT * FROM needs;" // WHERE needs.disaster = " + disasterId + ";";
+                    const query = "SELECT * FROM needs WHERE needs.disaster = " + disasterId + ";";
                     connection.query(query, (err, results) => {
                         if (err) reject(new Error(err.message));
                         resolve(results)

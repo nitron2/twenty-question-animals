@@ -18,7 +18,7 @@ function initializeBlankCards(containerId, numberOfCards) {
     }
 }
 
-function populateBlankDisastersCards(disasters) {
+async function populateBlankDisastersCards(disasters) {
     for (let i = 0; i <= disasters.length; i++) { 
         let disaster = disasters[i]
         let card = document.getElementById('cardContainer').querySelector(`.card:nth-child(${i+1})`);
@@ -27,8 +27,8 @@ function populateBlankDisastersCards(disasters) {
             cardContainer.className = 'card-container';
             addHeaderToCard(cardContainer, disaster.city)
             addHeaderToCard(cardContainer, disaster.type)
-            addImageToCard(cardContainer, disaster.picture)
-            addNeedsToCard(cardContainer, disaster.id)
+            await addImageToCard(cardContainer, disaster.picture)
+            await addNeedsToCard(cardContainer, disaster.id)
             addButtonsToCard(cardContainer)
             card.appendChild(cardContainer);
         }
@@ -50,7 +50,7 @@ async function addImageToCard(cardContainer, pictureName) {
     cardContainer.appendChild(imageElement);
 }
 
-async function addNeedsToCard(disasterId) {
+async function addNeedsToCard(cardContainer,disasterId) {
     let needs = await getAllNeedsOfADisaster(disasterId)
     if (needs) {
         for(const need of needs) {
