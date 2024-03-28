@@ -10,9 +10,9 @@ export async function getAllDisasters() {
     }
 }
 
-export async function getDisasterImageBlob(imageName) {
+export async function getDisasterImageBlob(disaster) {
     try {
-        const response = await fetch(`http://127.0.0.1:5003/get-disaster-image?imageName=${encodeURIComponent(imageName)}`);
+        const response = await fetch(`http://127.0.0.1:5003/get-disaster-image?imageName=${encodeURIComponent(disaster.picture)}`);
         const blob = await response.blob(); // Parse the JSON from the response
         return blob;
     } catch (error) {
@@ -21,9 +21,9 @@ export async function getDisasterImageBlob(imageName) {
     }
 }
 
-export async function getAllNeedsOfADisaster(disasterId) {
+export async function getAllNeedsOfADisaster(disaster) {
     try {
-        const response = await fetch(`http://127.0.0.1:5003/get-all-needs-of-a-disaster?disasterId=${encodeURIComponent(disasterId)}`);
+        const response = await fetch(`http://127.0.0.1:5003/get-all-needs-of-a-disaster?disasterId=${encodeURIComponent(disaster.id)}`);
         const data = await response.json(); // Parse the JSON from the response
         let needs = Object.values(data)[0]; // Assuming the structure needs this
         return needs;

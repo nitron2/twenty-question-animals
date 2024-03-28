@@ -27,8 +27,8 @@ async function populateBlankDisastersCards(disasters) {
             cardContainer.className = 'card-container';
             addHeaderToCard(cardContainer, disaster.city)
             addHeaderToCard(cardContainer, disaster.type)
-            await addImageToCard(cardContainer, disaster.picture)
-            await addNeedsToCard(cardContainer, disaster.id)
+            await addImageToCard(cardContainer, disaster)
+            await addNeedsToCard(cardContainer, disaster)
             addButtonsToCard(cardContainer)
             card.appendChild(cardContainer);
         }
@@ -41,8 +41,8 @@ function addHeaderToCard(cardContainer, text) {
     cardContainer.appendChild(paragraph);
 }
 
-async function addImageToCard(cardContainer, pictureName) {
-    let blob = await getDisasterImageBlob(pictureName)
+async function addImageToCard(cardContainer, disaster) {
+    let blob = await getDisasterImageBlob(disaster)
     const imageObjectURL = URL.createObjectURL(blob)
     const imageElement = document.createElement('img')
     imageElement.src = imageObjectURL
@@ -50,7 +50,7 @@ async function addImageToCard(cardContainer, pictureName) {
 }
 
 async function addNeedsToCard(cardContainer,disasterId) {
-    let needs = await getAllNeedsOfADisaster(disasterId)
+    let needs = await getAllNeedsOfADisaster(disaster)
     if (needs) {
         for(const need of needs) {
             let needParagraph = document.createElement('p');
