@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Function to create cards in the cardContainer
     function initializeBlankCards(containerId, numberOfCards) {
-        var cardContainer = document.getElementById(containerId);
+        var cardContainer = document.getElementById(containerId);https://chat.openai.com/
 
         for (var i = 1; i <= numberOfCards; i++) {
             var card = document.createElement('div');
