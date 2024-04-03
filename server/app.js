@@ -17,10 +17,8 @@ app.use(express.urlencoded({extended : false}))
 // Require the upload middleware
 const upload = require('./upload-disaster-image');
 
-// TODO: Validate that image is of specific type:
-// Set up a route for file uploads
+
 app.post('/upload-disaster-image', upload.single('file'), (request, response) => {
-  // Handle the uploaded file
   response.send('Disaster created successfully.')
 });
 
@@ -32,14 +30,6 @@ app.post('/create-disaster', (request, response) => {
     .catch(error => console.log(error));
 });
 
-app.get('/get-disaster-image', (req, res) => {
-    const imageName = req.query.imageName; // Access the name sent by the client
-    const imagePath = path.join(__dirname, '/disaster-images', imageName);
-    res.sendFile(imagePath);
-});
-
-
-// create
 app.post('/signup', (request, response) => {
     const { name, email, password, type } = request.body; 
     // What the hell is JavaScript evne doing. This is chaotic as f**k
@@ -52,7 +42,13 @@ app.post('/signup', (request, response) => {
     // What is this chaining of functions?? WTF!
 });
  
-// read
+
+app.get('/get-disaster-image', (req, res) => {
+    const imageName = req.query.imageName; // Access the name sent by the client
+    const imagePath = path.join(__dirname, '/disaster-images', imageName);
+    res.sendFile(imagePath);
+});
+
 app.get('/get-all-disasters', (request, response) => {
     const db = crudService.getCrudServiceIstance()
     const result = db.getAllDisasters()
@@ -69,8 +65,13 @@ app.get('/get-all-needs-of-a-disaster', (request, response) => {
     .then(data => response.json({data : data}))
     .catch(err => {console.log(err)})
 })
-// update
 
-// delete
+app.post('/make-donations', (request, response) => {
+    const db = crudService.getCrudServiceIstance()
+    db.makeDonations(request.body)
+    console.log(request.body); // This will be your array from the frontend
+});
+
+
 console.log(process.env.PORT)
 app.listen(process.env.PORT, () => console.log('app is running on port', PORT=process.env.PORT));

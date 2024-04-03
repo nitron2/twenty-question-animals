@@ -61,6 +61,9 @@ videos: https://youtube.com/playlist?list=PLnqhWGNR9f9--oV4PHu1-Z8Yx8HlELQgd&si=
 
 multer: https://www.freecodecamp.org/news/simplify-your-file-upload-process-in-express-js/
 
+HTTP request methods:
+https://medium.com/swlh/restful-api-design-get-post-put-patch-delete-a-walkthrough-with-javascripts-fetch-api-e37a8416e2a0
+
 ## Time Log
 
  Hayden:

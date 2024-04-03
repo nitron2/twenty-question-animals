@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 24, 2024 at 09:49 PM
+-- Generation Time: Apr 03, 2024 at 04:49 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,6 +34,15 @@ CREATE TABLE `disasters` (
   `picture` varchar(128) NOT NULL DEFAULT 'placeholder.jpeg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `disasters`
+--
+
+INSERT INTO `disasters` (`id`, `type`, `city`, `picture`) VALUES
+(1, 'Dust Storm', 'Phoenix', 'PhoenixDustStorm.png'),
+(2, 'Monster Vs. Alien', 'San Fransico', 'MonstersVersusAliens.jpeg'),
+(3, 'Test testType', 'Test', 'image11.jpeg');
+
 -- --------------------------------------------------------
 
 --
@@ -41,11 +50,24 @@ CREATE TABLE `disasters` (
 --
 
 CREATE TABLE `needs` (
-  `name` varchar(32) NOT NULL,
-  `disaster` varchar(32) NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT 0,
-  `max` int(11) NOT NULL DEFAULT 10
+  `id` int(11) NOT NULL,
+  `need_name` varchar(32) NOT NULL DEFAULT 'Volunteers',
+  `disaster_id` int(11) NOT NULL DEFAULT 1,
+  `quantity_filled` int(11) NOT NULL DEFAULT 0,
+  `quantity_max` int(11) NOT NULL DEFAULT 100
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `needs`
+--
+
+INSERT INTO `needs` (`id`, `need_name`, `disaster_id`, `quantity_filled`, `quantity_max`) VALUES
+(1, 'Volunteers', 1, 0, 500),
+(2, 'Hats', 1, 0, 1000),
+(3, 'Gloves', 1, 0, 250),
+(4, 'Volunteers', 2, 0, 500),
+(5, 'Sweaters', 2, 0, 1000),
+(6, 'Bandages', 2, 0, 250);
 
 -- --------------------------------------------------------
 
@@ -108,7 +130,7 @@ ALTER TABLE `disasters`
 -- Indexes for table `needs`
 --
 ALTER TABLE `needs`
-  ADD PRIMARY KEY (`name`,`disaster`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `trucks`
@@ -136,23 +158,19 @@ ALTER TABLE `warehouses`
 -- AUTO_INCREMENT for table `disasters`
 --
 ALTER TABLE `disasters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+
+--
+-- AUTO_INCREMENT for table `needs`
+--
+ALTER TABLE `needs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `needs`
---
-ALTER TABLE `needs`
-  ADD CONSTRAINT `needs_ibfk_1` FOREIGN KEY (`name`) REFERENCES `warehouses` (`item_name`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

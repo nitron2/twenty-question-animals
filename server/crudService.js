@@ -82,7 +82,7 @@ class CrudService {
         if (disasterId) {
             try {
                 const response = await new Promise((resolve, reject) => {
-                    const query = "SELECT * FROM needs WHERE needs.disaster = " + disasterId + ";";
+                    const query = "SELECT * FROM needs WHERE needs.disaster_id = " + disasterId + ";";
                     connection.query(query, (err, results) => {
                         if (err) reject(new Error(err.message));
                         resolve(results)
@@ -118,6 +118,42 @@ class CrudService {
             console.log(error);
         }
     }
+
+    async makeDonations(donations) {
+        console.log('donations: ' + donations)
+        for (const donationAddition of donations) {
+            try {   
+                console.log('donation addition: ' + donationAddition)
+                const insertId = await new Promise((resolve, reject) => { 
+                    let query = "UPDATE needs SET quantity_filled = quantity_filled + " +  donationAddition[1]  + " WHERE id = " + donationAddition[0] + ";"
+                    connection.query(query, (error, result) => { 
+                        if (error) reject(new Error(error.message))
+                        resolve(result) 
+                    })
+                })
+                console.log(insertId)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+    }
+
+    /*async makeDonation(needId, amount) {
+        console.log("trying to update " + needId + ": " + amount + "in needs")
+        try {   
+            const insertId = await new Promise((resolve, reject) => { 
+                let query = "UPDATE needs SET quantity_filled = quantity_filled + " +  amount  + " WHERE id = " + needId + ";"
+                connection.query(query, (error, result) => { 
+                    if (error) reject(new Error(error.message))
+                    resolve(result) 
+                })
+            })
+            console.log(insertId)
+        } catch (error) {
+            console.log(error);
+        }
+    }*/
 }
 
 module.exports = CrudService
