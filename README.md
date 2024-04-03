@@ -83,3 +83,6 @@ https://medium.com/swlh/restful-api-design-get-post-put-patch-delete-a-walkthrou
 | Build Donate Page | 10 | Hayden |
 | Donate Page Refactor | 2 | Hayden |
 | Donate Page Debug | 1.5 | Hayden |
+| Adapt James' View Disasters Front End | 3 | Hayden |
+| Create View Disasters Back End | 1 | Hayden |
+| View Disasters Debug | 1 | Hayden |
