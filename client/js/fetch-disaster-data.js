@@ -1,5 +1,5 @@
 // According to this Medium article: 
-//https://medium.com/swlh/restful-api-design-get-post-put-patch-delete-a-walkthrough-with-javascripts-fetch-api-e37a8416e2a0
+// https://medium.com/swlh/restful-api-design-get-post-put-patch-delete-a-walkthrough-with-javascripts-fetch-api-e37a8416e2a0
 // the GET method is the only one that does not require
 // header and body specifications, but I don't do this at all in my non GET
 // methods. Research this further.
@@ -31,6 +31,8 @@ export async function getAllNeedsOfADisaster(disaster) {
     try {
         const response = await fetch(`http://127.0.0.1:5003/get-all-needs-of-a-disaster?disasterId=${encodeURIComponent(disaster.id)}`);
         const data = await response.json(); // Parse the JSON from the response
+        console.log("derp")
+        console.log(data)
         let needs = Object.values(data)[0]; // Assuming the structure needs this
         return needs; 
     } catch (error) {

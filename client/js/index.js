@@ -49,27 +49,38 @@ async function addImageToCard(cardContainer, disaster) {
     cardContainer.appendChild(imageElement)
 }
 
-async function addNeedsToCard(cardContainer,disasterId) {
+async function addNeedsToCard(cardContainer,disaster) {
     let needs = await getAllNeedsOfADisaster(disaster)
     if (needs) {
         for(const need of needs) {
+            console.log('need:')
+            console.log(need)
             let needParagraph = document.createElement('p');
-            needParagraph.textContent = need.name + ": " + need.quantity + "/" + need.max;
+            needParagraph.textContent = need.need_name + ": " + need.quantity_filled + "/" + need.quantity_max;
             cardContainer.appendChild(needParagraph);
         }
     }
 }
 
 function addButtonsToCard(cardContainer) {
-    let donate = document.createElement('button');
-    donate.textContent = "Donate";
-    cardContainer.appendChild(donate);
-
-    let volunteer = document.createElement('button');
-    volunteer.textContent = "Volunteer";
-    cardContainer.appendChild(volunteer);
-
-    let deliver = document.createElement('button');
-    deliver.textContent = "Deliver";
-    cardContainer.appendChild(deliver);
-}
+        let donate = document.createElement('button');
+        donate.textContent = "Donate";
+        donate.addEventListener('click', function() {
+            window.location.href = 'donate.html';
+        });
+        cardContainer.appendChild(donate);
+    
+        let volunteer = document.createElement('button');
+        volunteer.textContent = "Volunteer";
+        volunteer.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+        cardContainer.appendChild(volunteer);
+    
+        let deliver = document.createElement('button');
+        deliver.textContent = "Deliver";
+        deliver.addEventListener('click', function() {
+            window.location.href = 'deliver.html';
+        });
+        cardContainer.appendChild(deliver);
+    }
