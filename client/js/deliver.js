@@ -4,8 +4,7 @@ let donations = []
 
 document.addEventListener('DOMContentLoaded', async function() {
     // Function to create cards in the cardContainer
-    let disasters = await getAllDisasters()
-    let disaster = disasters[0]
+    
 
     let cityParagraph = document.getElementById('city')
     cityParagraph.textContent = disaster.city

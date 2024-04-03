@@ -8,8 +8,7 @@ export async function getAllDisasters() {
     try {
         const response = await fetch('http://127.0.0.1:5003/get-all-disasters');
         const data = await response.json(); // Parse the JSON from the response
-        let disasters = Object.values(data)[0]; // Assuming the structure needs this
-        return disasters;
+        return Object.values(data)[0]; // Assuming the structure needs this
     } catch (error) {
         console.error('Error fetching data: ', error); // Log any errors
         return undefined; // Return an empty array or appropriate value in case of an error
@@ -31,19 +30,27 @@ export async function getAllNeedsOfADisaster(disaster) {
     try {
         const response = await fetch(`http://127.0.0.1:5003/get-all-needs-of-a-disaster?disasterId=${encodeURIComponent(disaster.id)}`);
         const data = await response.json(); // Parse the JSON from the response
-        console.log("derp")
-        console.log(data)
-        let needs = Object.values(data)[0]; // Assuming the structure needs this
-        return needs; 
+        return Object.values(data)[0]; // Assuming the structure needs this
     } catch (error) {
         console.error('Error fetching data: ', error); // Log any errors
         return undefined; // Return an empty array or appropriate value in case of an error
     }
 }
 
-export async function makeDonations(donations) {
+export async function getDisasterById(disasterId) {
     try {
-        await fetch('http://127.0.0.1:5003/make-donations', {
+        const response = await fetch(`http://127.0.0.1:5003/get-disaster-by-id?disasterId=${encodeURIComponent(disasterId)}`);
+        const data = await response.json(); // Parse the JSON from the response
+        return Object.values(data)[0]; // Assuming the structure needs this
+    } catch (error) {
+        console.error('Error fetching data: ', error); // Log any errors
+        return undefined; // Return an empty array or appropriate value in case of an error
+    }
+}
+
+export async function submitDonations(donations) {
+    try {
+        await fetch('http://127.0.0.1:5003/submit-donations', {
             method: 'POST', // Specify the method
             headers: {
               'Content-Type': 'application/json',
@@ -59,53 +66,3 @@ export async function makeDonations(donations) {
         console.log('Error fetching data: ', error); // Log any errors
     }
 }
-
-
-/*export async function makeDonation(needId, amount) {
-    try {
-        await fetch(`http://127.0.0.1:5003/make-donation?needId=${encodeURIComponent(needId)}&amount=${encodeURIComponent(amount)}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // or .text(), etc., depending on the response type
-        })
-        .then(data => {
-            console.log(data); // Process your response data here
-        })
-        .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
-        });
-    } catch (error) {
-        console.error('Error fetching data: ', error); // Log any errors
-    }
-/*}
-
-/*export async function makeDonation(needId, amount) {
-    try {
-        await fetch(`http://127.0.0.1:5003/make-donation`, {
-            mthod: 'PATCH',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                needId: needId,
-                amount: amount
-            })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json(); // or .text(), etc., depending on the response type
-        })
-        .then(data => {
-            console.log(data); // Process your response data here
-        })
-        .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
-        });
-    } catch (error) {
-        console.error('Error fetching data: ', error); // Log any errors
-    }
-}*/
-
-

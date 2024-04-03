@@ -1,29 +1,39 @@
-import { getAllDisasters, getDisasterImageBlob, getAllNeedsOfADisaster, makeDonations} from './fetch-disaster-data.js'
+import { getDisasterImageBlob, getAllNeedsOfADisaster, submitDonations, getDisasterById} from './fetch-disaster-data.js'
 
 let donations = []
 
 document.addEventListener('DOMContentLoaded', async function() {
     // Function to create cards in the cardContainer
-    let disasters = await getAllDisasters()
-    let disaster = disasters[0]
 
-    let cityParagraph = document.getElementById('city')
-    cityParagraph.textContent = disaster.city
+    // Create URLSearchParams object from the current URL's query string
+    const params = new URLSearchParams(window.location.search);
 
-    let typeParagraph = document.getElementById('type')
-    typeParagraph.textContent = disaster.type
+    // Get the value of the 'data' parameter
+    const disasterId = params.get('disasterId');
 
-    let disasterImage = document.getElementById('disaster-image')
-    let blob = await getDisasterImageBlob(disaster)
-    const imageObjectURL = URL.createObjectURL(blob)
-    const imageElement = document.createElement('img')
-    imageElement.src = imageObjectURL
-    disasterImage.src = imageObjectURL 
-
-
-    let needs = await getAllNeedsOfADisaster(disaster)
-    for (const need of needs){
-        addNeedsRow(need)
+    // Optionally, you can display the data on the page
+    // Ensure you have an element with the id 'dataDisplay' in your HTML
+    if (disasterId) {
+        let disaster = await getDisasterById(disasterId)
+        disaster = disaster[0]
+        let cityParagraph = document.getElementById('city')
+        cityParagraph.textContent = disaster.city
+    
+        let typeParagraph = document.getElementById('type')
+        typeParagraph.textContent = disaster.type
+    
+        let disasterImage = document.getElementById('disaster-image')
+        let blob = await getDisasterImageBlob(disaster)
+        const imageObjectURL = URL.createObjectURL(blob)
+        const imageElement = document.createElement('img')
+        imageElement.src = imageObjectURL
+        disasterImage.src = imageObjectURL 
+    
+    
+        let needs = await getAllNeedsOfADisaster(disaster)
+        for (const need of needs){
+            addNeedsRow(need)
+        }
     }
 })
 
@@ -68,15 +78,12 @@ async function addDonation(needId, amountToAdd){
 }
 
 // TODO: Later have the page go back to view disasters page
-$(`#done`).on('click', async function() {
-    console.log(donations)
-    try {
-        makeDonations(donations)
+$(`#done`).on('click', function() {
+    try{
+        submitDonations(donations)
+        window.location.href = 'index.html';
+    } catch(error) {
         location.reload()
-        console.log('reload')
-    } catch(error){
-        console.log(error)
     }
 })
-
 

@@ -66,9 +66,19 @@ app.get('/get-all-needs-of-a-disaster', (request, response) => {
     .catch(err => {console.log(err)})
 })
 
-app.post('/make-donations', (request, response) => {
+app.get('/get-disaster-by-id', (request, response) => {
     const db = crudService.getCrudServiceIstance()
-    db.makeDonations(request.body)
+    const disasterId = request.query.disasterId; // Access the name sent by the client
+    const result = db.getDisasterById(disasterId)
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => {console.log(err)})
+})
+
+
+app.post('/submit-donations', (request, response) => {
+    const db = crudService.getCrudServiceIstance()
+    db.submitDonations(request.body)
     console.log(request.body); // This will be your array from the frontend
 });
 

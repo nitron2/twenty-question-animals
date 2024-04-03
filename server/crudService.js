@@ -78,6 +78,22 @@ class CrudService {
         }
     }
 
+    async getDisasterById(disasterId) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM disasters WHERE id = " + disasterId + ";";
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results)
+                })
+            });
+            console.log(response)
+            return response
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     async getAllNeedsOfADisaster(disasterId) {
         if (disasterId) {
             try {
@@ -101,7 +117,6 @@ class CrudService {
 
     async createNewDisaster(type, city, picture) {
         console.log("trying to insert " + type + ": " + city + " " + picture + " into db.")
-
         try {   
             const insertId = await new Promise((resolve, reject) => { 
                 let query
@@ -119,7 +134,7 @@ class CrudService {
         }
     }
 
-    async makeDonations(donations) {
+    async submitDonations(donations) {
         console.log('donations: ' + donations)
         for (const donationAddition of donations) {
             try {   

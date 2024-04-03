@@ -29,7 +29,7 @@ async function populateBlankDisastersCards(disasters) {
             addHeaderToCard(cardContainer, disaster.type)
             await addImageToCard(cardContainer, disaster)
             await addNeedsToCard(cardContainer, disaster)
-            addButtonsToCard(cardContainer)
+            addDonateButtonToCard(disaster.id, cardContainer)
             card.appendChild(cardContainer);
         }
     }
@@ -62,25 +62,15 @@ async function addNeedsToCard(cardContainer,disaster) {
     }
 }
 
-function addButtonsToCard(cardContainer) {
-        let donate = document.createElement('button');
-        donate.textContent = "Donate";
-        donate.addEventListener('click', function() {
-            window.location.href = 'donate.html';
-        });
-        cardContainer.appendChild(donate);
+function addDonateButtonToCard(disasterId, cardContainer) {
+    let donate = document.createElement('button');
+    donate.textContent = "Donate";
+    donate.addEventListener('click', function() {
+        window.location.href = `donate.html?disasterId=${encodeURIComponent(disasterId)}`;
+    });
+    cardContainer.appendChild(donate);
+}
     
-        let volunteer = document.createElement('button');
-        volunteer.textContent = "Volunteer";
-        volunteer.addEventListener('click', function() {
-            window.location.href = 'index.html';
-        });
-        cardContainer.appendChild(volunteer);
+
+
     
-        let deliver = document.createElement('button');
-        deliver.textContent = "Deliver";
-        deliver.addEventListener('click', function() {
-            window.location.href = 'deliver.html';
-        });
-        cardContainer.appendChild(deliver);
-    }
