@@ -67,14 +67,19 @@ https://medium.com/swlh/restful-api-design-get-post-put-patch-delete-a-walkthrou
 ## Time Log
 
  Hayden:
-
- - Learning Web Development General: 14 hr
- - Setting up development environment: 2 hr
- - Refactoring all front-end: 1.5 hr
- - Adding sign-up/sign in form 5.0 hr
- - Creating Sign-in back-end: 0.5 hr
- - Debugging Sign-in back-end: 5 hr
- - General Database debugging: 1 hr
- - Create feature for Create Disaster Page: Image Upload: 1 hr
- - Debug feature for Create Disaster Page: Image Upload: 2 hr
- - Create Disaster Page Debugging: 6 hr
+ 
+ | Activity | Hours | Contributor |
+| -------- | ------- | ----------|
+| Learn JavaScript, CSS, HTML, Node Fundamentals | 14 | Hayden |
+| Set up development environment | 2 | Hayden |
+| Refactor all front-end | 1.5 | Hayden |
+| Sign-up page Front End | 5 | Hayden |
+| Sign-up page Back End | 0.5 | Hayden |
+| Sign-up page Back End Debugging | 5 | Hayden |
+| Database Troubleshooting | 1 | Hayden |
+| Image Upload for Create Disaster Page | 1 | Hayden |
+| Image Upload for Create Disaster Page Debug | 2 | Hayden |
+| Create Disaster Page Debug | 6.5 | Hayden |
+| Build Donate Page | 10 | Hayden |
+| Donate Page Refactor | 2 | Hayden |
+| Donate Page Debug | 1.5 | Hayden |
