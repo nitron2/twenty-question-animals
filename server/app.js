@@ -42,7 +42,6 @@ app.post('/signup', (request, response) => {
     // What is this chaining of functions?? WTF!
 });
  
-
 app.get('/get-disaster-image', (req, res) => {
     const imageName = req.query.imageName; // Access the name sent by the client
     const imagePath = path.join(__dirname, '/disaster-images', imageName);
@@ -51,7 +50,16 @@ app.get('/get-disaster-image', (req, res) => {
 
 app.get('/get-all-disasters', (request, response) => {
     const db = crudService.getCrudServiceIstance()
-    const result = db.getAllDisasters()
+    const result = db.getAllNeeds()
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => {console.log(err)})
+})
+
+app.get('/get-all-needs', (request, response) => {
+    const db = crudService.getCrudServiceIstance()
+    const disasterId = request.query.disasterId; // Access the name sent by the client
+    const result = db.getAllNeedsOfADisaster(disasterId)
     result
     .then(data => response.json({data : data}))
     .catch(err => {console.log(err)})
@@ -75,10 +83,16 @@ app.get('/get-disaster-by-id', (request, response) => {
     .catch(err => {console.log(err)})
 })
 
-
 app.post('/submit-donations', (request, response) => {
     const db = crudService.getCrudServiceIstance()
     db.submitDonations(request.body)
+    console.log(request.body); // This will be your array from the frontend
+});
+
+
+app.post('/set-need-status', (request, response) => {
+    const db = crudService.getCrudServiceIstance()
+    db.setNeedStatus(request.body.id, request.body.status)
     console.log(request.body); // This will be your array from the frontend
 });
 

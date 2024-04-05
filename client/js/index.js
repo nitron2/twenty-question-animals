@@ -56,7 +56,7 @@ async function addNeedsToCard(cardContainer,disaster) {
             console.log('need:')
             console.log(need)
             let needParagraph = document.createElement('p');
-            needParagraph.textContent = need.need_name + ": " + need.quantity_filled + "/" + need.quantity_max;
+            needParagraph.textContent = need.name + ": " + need.quantity_filled + "/" + need.quantity_max;
             cardContainer.appendChild(needParagraph);
         }
     }

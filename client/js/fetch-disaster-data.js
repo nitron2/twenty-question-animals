@@ -4,9 +4,22 @@
 // header and body specifications, but I don't do this at all in my non GET
 // methods. Research this further.
 
+//TODO: Undo hard coding for host and port for all of these!
+
 export async function getAllDisasters() {
     try {
         const response = await fetch('http://127.0.0.1:5003/get-all-disasters');
+        const data = await response.json(); // Parse the JSON from the response
+        return Object.values(data)[0]; // Assuming the structure needs this
+    } catch (error) {
+        console.error('Error fetching data: ', error); // Log any errors
+        return undefined; // Return an empty array or appropriate value in case of an error
+    }
+}
+
+export async function getAllNeeds() {
+    try {
+        const response = await fetch('http://127.0.0.1:5003/get-all-disasters')
         const data = await response.json(); // Parse the JSON from the response
         return Object.values(data)[0]; // Assuming the structure needs this
     } catch (error) {
@@ -26,6 +39,7 @@ export async function getDisasterImageBlob(disaster) {
     }
 }
 
+// TODO: refactor the name of this to  getAllNeedsByDisaster()
 export async function getAllNeedsOfADisaster(disaster) {
     try {
         const response = await fetch(`http://127.0.0.1:5003/get-all-needs-of-a-disaster?disasterId=${encodeURIComponent(disaster.id)}`);
@@ -49,20 +63,30 @@ export async function getDisasterById(disasterId) {
 }
 
 export async function submitDonations(donations) {
-    try {
-        await fetch('http://127.0.0.1:5003/submit-donations', {
-            method: 'POST', // Specify the method
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(donations),
-          })
-          .then(response => response.json()) // Parse the JSON response
-          .then(data => console.log(data)) // Log the response data
-          .catch((error) => {
-            console.log('Error:', error);
-          });
-    } catch (error) {
-        console.log('Error fetching data: ', error); // Log any errors
-    }
+    await fetch('http://127.0.0.1:5003/submit-donations', {
+        method: 'POST', // Specify the method
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(donations),
+        })
+        .then(response => response.json()) // Parse the JSON response
+        .then(data => console.log(data)) // Log the response data
+        .catch((error) => {
+            console.log('Error:', error);}
+        );
+}
+
+export async function setNeedStatus(need, status) {
+    fetch("http://127.0.0.1:5003/set-need-status", {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'id' : need.id,
+            'status' : status})    
+        })
+        .then(response => response.json())
+        .catch((error) => console.log('Error:', error))
 }
