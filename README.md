@@ -86,3 +86,9 @@ https://medium.com/swlh/restful-api-design-get-post-put-patch-delete-a-walkthrou
 | Adapt James' View Disasters Front End | 3 | Hayden |
 | Create View Disasters Back End | 1 | Hayden |
 | View Disasters Debug | 1 | Hayden |
+| Create deliver.html | 0.5 | Hayden |
+| Design Dliver Page | 0.5 | Hayden |
+| Deliver Page Database Changes | 1.5 | Hayden |
+| Link donation,.html to index.html | 1.5 | Hayden, James |
+| Code Deliver Page Front End | 1 | Hayden |
+| Code Deliver Page Back End | 0.5 | Hayden |
