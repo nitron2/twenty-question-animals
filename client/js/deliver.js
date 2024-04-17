@@ -21,7 +21,6 @@ async function addNeedsRow(need){
     if (!disaster) return
     if (!disaster.city) return
     if (!disaster.type) return
-    console.log(need.status)
     if(need.status == NEED_STATUS.IN_WAREHOUSE || need.status == NEED_STATUS.IN_TRANSIT) {
         let dataCells = `<tr scope="row" class="need-row-${need.id}">
                             <td>${need.name}</td>
@@ -36,7 +35,7 @@ async function addNeedsRow(need){
                         </tr>`
                    
         $('#needs-table').append(dataCells)
-        updateButtons(need)
+        updateButtons(need, need.status)
 
         $(`#pick-up-${need.id}`).on('click', async function() {
             await updatePage(need, NEED_STATUS.IN_TRANSIT)
@@ -48,11 +47,11 @@ async function addNeedsRow(need){
     }
 }
 
-function updateButtons(need) {
-    if (need.status == NEED_STATUS.IN_WAREHOUSE) {
+function updateButtons(need, status) {
+    if (status == NEED_STATUS.IN_WAREHOUSE) {
         $(`#deliver-${need.id}`).prop('disabled', true)
         $(`#pick-up-${need.id}`).prop('disabled', false)
-    } else if (need.status == NEED_STATUS.IN_TRANSIT) {
+    } else if (status == NEED_STATUS.IN_TRANSIT) {
         $(`#deliver-${need.id}`).prop('disabled', false)
         $(`#pick-up-${need.id}`).prop('disabled', true)
     }
@@ -61,7 +60,7 @@ function updateButtons(need) {
  async function updatePage(need, status) {
     try {
         await setNeedStatus(need, status)
-        updateButtons(need)
+        updateButtons(need, status)
         if (status == NEED_STATUS.DELIVERED) {
             location.reload()
         }

@@ -71,7 +71,7 @@ export async function submitDonations(donations) {
         body: JSON.stringify(donations),
         })
         .then(response => response.json()) // Parse the JSON response
-        .then(data => console.log(data)) // Log the response data
+        //.then(data => console.log(data)) // Log the response data
         .catch((error) => {
             console.log('Error:', error);}
         );
@@ -85,8 +85,12 @@ export async function setNeedStatus(need, status) {
         },
         body: JSON.stringify({
             'id' : need.id,
-            'status' : status})    
-        })
-        .then(response => response.json())
-        .catch((error) => console.log('Error:', error))
+            'status' : status
+        })    
+    })
+    .then(response => {
+        console.log('Raw response:', response);
+        return response.json()
+    })
+    .catch((error) => console.log('Error:', error))
 }

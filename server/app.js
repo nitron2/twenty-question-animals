@@ -86,14 +86,13 @@ app.get('/get-disaster-by-id', (request, response) => {
 app.post('/submit-donations', (request, response) => {
     const db = crudService.getCrudServiceIstance()
     db.submitDonations(request.body)
-    console.log(request.body); // This will be your array from the frontend
+    //console.log(request.body); // This will be your array from the frontend
 });
 
 
-app.post('/set-need-status', (request, response) => {
+app.put('/set-need-status', (request, response) => {
     const db = crudService.getCrudServiceIstance()
     db.setNeedStatus(request.body.id, request.body.status)
-    console.log(request.body); // This will be your array from the frontend
 });
 
 
