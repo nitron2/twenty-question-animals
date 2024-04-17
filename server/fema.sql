@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 04, 2024 at 06:49 PM
+-- Generation Time: Apr 17, 2024 at 04:07 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -56,17 +56,15 @@ CREATE TABLE `needs` (
   `quantity_filled` int(11) NOT NULL DEFAULT 0,
   `quantity_max` int(11) NOT NULL DEFAULT 100,
   `warehouse` varchar(32) NOT NULL,
-  `status` ENUM('in_warehouse', 'in_transit', 'delivered') NOT NULL DEFAULT 'in_warehouse'  
+  `status` enum('in_warehouse','in_transit','delivered') NOT NULL DEFAULT 'in_warehouse'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 
 --
 -- Dumping data for table `needs`
 --
 
 INSERT INTO `needs` (`id`, `name`, `disaster_id`, `quantity_filled`, `quantity_max`, `warehouse`, `status`) VALUES
-(1, 'Volunteers', 1, 500, 500, '', 'in_warehouse'),
+(1, 'Volunteers', 1, 500, 500, '', 'delivered'),
 (2, 'Hats', 1, 258, 1000, '', 'in_warehouse'),
 (3, 'Gloves', 1, 8, 250, '', 'in_warehouse'),
 (4, 'Volunteers', 2, 100, 500, '', 'in_warehouse'),
