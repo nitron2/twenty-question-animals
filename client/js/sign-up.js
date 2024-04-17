@@ -38,3 +38,4 @@ document.querySelectorAll('input[name="optionsBttn"]').forEach(function(radioBtn
         createListItem(this.id);
     });
 });
+

@@ -25,3 +25,40 @@
     padding: 50px 60px 70px;
     text-align: center;
 }
+
+/* Navigation Bar Styles */
+nav {
+    background-color: #333; /* Dark background color */
+    overflow: hidden; /* Ensures the nav content is in line */
+}
+
+nav ul {
+    list-style-type: none; /* Removes the default list styling */
+    padding: 0; /* Removes the default padding */
+    margin: 0; /* Removes the default margin */
+}
+
+nav ul li {
+    float: left; /* Positions the navigation items horizontally */
+}
+
+nav ul li a {
+    display: block; /* Makes the entire area clickable, not just the text */
+    color: white; /* Text color */
+    text-align: center; /* Centers the text */
+    padding: 14px 20px; /* Top and bottom padding, left and right padding */
+    text-decoration: none; /* Removes the underline from links */
+    font-family: Arial, sans-serif; /* Font style */
+}
+
+nav ul li a:hover {
+    background-color: #ddd; /* Color change on hover */
+    color: black; /* Text color change on hover */
+}
+
+/* Responsive design: Stacks the nav items vertically on smaller screens */
+@media screen and (max-width: 600px) {
+    nav ul li {
+        float: none;
+    }
+}
