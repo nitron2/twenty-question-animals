@@ -18,11 +18,6 @@
             <li><a href="sign-up.html">Sign In</a></li>
         </ul>
     </nav>
-    <!-- This is a test to see how this all gets altered, second body 
-    is where there is an actual form and shows how data can be handled -->
-    <h1>This is Kinda gay</h1>
-    <p>This right here will eventually become our search bar but it will be handled like card but a search thingy </p>
-    <textarea> What does this do?</textarea>
 </body>
 <body id="form">
 
@@ -30,48 +25,18 @@
   <!-- THIS SECTION: This entire form will be handled like the cardContainer below
   very little actual HTML will be writen and just a referene to the script.js funtion.
   This will be confusing at first but it will allow us to later incorperate server. -->
-    <form action="/submit-form" method="post">
-        <label for="userInput">Enter Text:</label>
-        <input type="text" id="userInput" name="userInput">
-        <input type="submit" value="Submit">
-    </form>
   
   <!-- Example:--> 
   <!-- This calls function in script.js that creates elements and the elements within
       Like this we can easily see a layout and what is where and use stylesheet to adjust
       the looks, JS for logic and this for layout.-->
+      <div>
+        <input placeholder="search by name" id="search-input">
+        <button id="search-button">Search</button>
+    </div>
     <div class="grid-container" id="cardContainer"></div>
   <!-- TODO: END HERE -->
 
-  <label>Name:</label>
-        <input type="text" id="name-input">
-        <button id="add-name-button">Add Name</button>
-
-        <br><br><br>
-
-        <div>
-            <input placeholder="search by name" id="search-input">
-            <button id="search-button">Search</button>
-        </div>
-
-        <br><br><br>
-
-        <table id="table">
-            <thead>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Date Added</th>
-                <th>Delete</th>
-                <th>Edit</th>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
-
-        <button id='refresh-button'>
-            refresh
-        </button>
     
 </body>
 </html>

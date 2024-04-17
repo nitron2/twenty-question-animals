@@ -15,7 +15,7 @@ function initializeBlankCards(containerId, numberOfCards) {
     for (var i = 1; i <= numberOfCards; i++) {
         var card = document.createElement('div');
         card.className = 'card';
-        card.textContent = 'Card ' + i; //?
+        //card.textContent = 'Card ' + i; //?
         cardContainer.appendChild(card);
     }
 }
