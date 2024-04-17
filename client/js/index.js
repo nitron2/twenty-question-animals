@@ -2,6 +2,8 @@ import { getAllDisasters, getAllNeedsOfADisaster, getDisasterImageBlob } from '.
 
 document.addEventListener('DOMContentLoaded', async function() {
     const disasters = await getAllDisasters();
+    console.log("disasters: " + disasters)
+    console.log(disasters[0])
     if (disasters) {
         initializeBlankCards('cardContainer', disasters.length)
         populateBlankDisastersCards(disasters)
@@ -21,6 +23,7 @@ function initializeBlankCards(containerId, numberOfCards) {
 async function populateBlankDisastersCards(disasters) {
     for (let i = 0; i <= disasters.length; i++) { 
         let disaster = disasters[i]
+        console.log('city: ' + disaster.city)
         let card = document.getElementById('cardContainer').querySelector(`.card:nth-child(${i+1})`);
         if (card) {
             let cardContainer = document.createElement('div');

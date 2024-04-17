@@ -50,7 +50,7 @@ app.get('/get-disaster-image', (req, res) => {
 
 app.get('/get-all-disasters', (request, response) => {
     const db = crudService.getCrudServiceIstance()
-    const result = db.getAllNeeds()
+    const result = db.getAllDisasters()
     result
     .then(data => response.json({data : data}))
     .catch(err => {console.log(err)})

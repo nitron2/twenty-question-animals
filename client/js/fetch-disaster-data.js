@@ -30,6 +30,7 @@ export async function getAllNeeds() {
 
 export async function getDisasterImageBlob(disaster) {
     try {
+        console.log("Dis:" + disaster.picture)
         const response = await fetch(`http://127.0.0.1:5003/get-disaster-image?imageName=${encodeURIComponent(disaster.picture)}`);
         const blob = await response.blob(); // Parse the JSON from the response
         return blob;
