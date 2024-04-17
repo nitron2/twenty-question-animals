@@ -19,7 +19,7 @@ export async function getAllDisasters() {
 
 export async function getAllNeeds() {
     try {
-        const response = await fetch('http://127.0.0.1:5003/get-all-disasters')
+        const response = await fetch('http://127.0.0.1:5003/get-all-needs')
         const data = await response.json(); // Parse the JSON from the response
         return Object.values(data)[0]; // Assuming the structure needs this
     } catch (error) {

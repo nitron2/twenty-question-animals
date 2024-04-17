@@ -59,7 +59,7 @@ app.get('/get-all-disasters', (request, response) => {
 app.get('/get-all-needs', (request, response) => {
     const db = crudService.getCrudServiceIstance()
     const disasterId = request.query.disasterId; // Access the name sent by the client
-    const result = db.getAllNeedsOfADisaster(disasterId)
+    const result = db.getAllNeeds()
     result
     .then(data => response.json({data : data}))
     .catch(err => {console.log(err)})
