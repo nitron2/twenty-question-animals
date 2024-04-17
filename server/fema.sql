@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2024 at 04:49 AM
+-- Generation Time: Apr 17, 2024 at 04:07 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -51,36 +51,25 @@ INSERT INTO `disasters` (`id`, `type`, `city`, `picture`) VALUES
 
 CREATE TABLE `needs` (
   `id` int(11) NOT NULL,
-  `need_name` varchar(32) NOT NULL DEFAULT 'Volunteers',
+  `name` varchar(32) NOT NULL DEFAULT 'Volunteers',
   `disaster_id` int(11) NOT NULL DEFAULT 1,
   `quantity_filled` int(11) NOT NULL DEFAULT 0,
-  `quantity_max` int(11) NOT NULL DEFAULT 100
+  `quantity_max` int(11) NOT NULL DEFAULT 100,
+  `warehouse` varchar(32) NOT NULL,
+  `status` enum('in_warehouse','in_transit','delivered') NOT NULL DEFAULT 'in_warehouse'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `needs`
 --
 
-INSERT INTO `needs` (`id`, `need_name`, `disaster_id`, `quantity_filled`, `quantity_max`) VALUES
-(1, 'Volunteers', 1, 0, 500),
-(2, 'Hats', 1, 0, 1000),
-(3, 'Gloves', 1, 0, 250),
-(4, 'Volunteers', 2, 0, 500),
-(5, 'Sweaters', 2, 0, 1000),
-(6, 'Bandages', 2, 0, 250);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `trucks`
---
-
-CREATE TABLE `trucks` (
-  `item_name` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `disaster_id` int(11) NOT NULL,
-  `delivered` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `needs` (`id`, `name`, `disaster_id`, `quantity_filled`, `quantity_max`, `warehouse`, `status`) VALUES
+(1, 'Volunteers', 1, 500, 500, '', 'delivered'),
+(2, 'Hats', 1, 258, 1000, '', 'in_warehouse'),
+(3, 'Gloves', 1, 8, 250, '', 'in_warehouse'),
+(4, 'Volunteers', 2, 100, 500, '', 'in_warehouse'),
+(5, 'Sweaters', 2, 50, 1000, '', 'in_warehouse'),
+(6, 'Bandages', 2, 75, 250, '', 'in_warehouse');
 
 -- --------------------------------------------------------
 
@@ -110,10 +99,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`) VALUES
 --
 
 CREATE TABLE `warehouses` (
-  `item_name` varchar(32) NOT NULL,
-  `qauntity` int(11) NOT NULL,
-  `disaster_id` int(11) NOT NULL,
-  `warehouse_location` varchar(32) NOT NULL
+  `id` int(11) NOT NULL,
+  `city` varchar(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -133,12 +120,6 @@ ALTER TABLE `needs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `trucks`
---
-ALTER TABLE `trucks`
-  ADD PRIMARY KEY (`item_name`,`disaster_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -148,7 +129,7 @@ ALTER TABLE `users`
 -- Indexes for table `warehouses`
 --
 ALTER TABLE `warehouses`
-  ADD PRIMARY KEY (`item_name`,`disaster_id`,`warehouse_location`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -171,6 +152,12 @@ ALTER TABLE `needs`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `warehouses`
+--
+ALTER TABLE `warehouses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

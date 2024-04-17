@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 })
 
 function addNeedsRow(need){
-    var row = `<tr scope="row" class="need-row-${need.id}">
-                    <td>${need.need_name}</td>
-                    <td id="quantity-${need.id}" data-need_id="${need.quantity_filled}">${need.quantity_filled} / ${need.quantity_max}</td>
+    let row = `<tr scope="row" class="need-row-${need.id}">
+                    <td>${need.name}</td>
+                    <td id="quantity-${need.id}" data-need_id="${need.id}">${need.quantity_filled} / ${need.quantity_max}</td>
                     <td>
                         <button class="btn btn-secondary" data-need_id="${need.id}" id="donate-one-${need.id}">+1</button>
                         <button class="btn btn-secondary" data-need_id="${need.id}" id="donate-twenty-five-${need.id}">+25</button>

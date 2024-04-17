@@ -78,6 +78,23 @@ class CrudService {
         }
     }
 
+    async getAllNeeds() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM needs;";
+
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results)
+                })
+            });
+            console.log(response)
+            return response
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     async getDisasterById(disasterId) {
         try {
             const response = await new Promise((resolve, reject) => {
@@ -151,24 +168,44 @@ class CrudService {
                 console.log(error);
             }
         }
-
     }
+    
+    async setNeedStatus(needId, status) {
+    try {
+        const result = await new Promise((resolve, reject) => {
+            // Use parameterized query to avoid SQL injection
+            const query = "UPDATE needs SET status = ? WHERE id = ?";
+            connection.query(query, [status, needId], (error, result) => {
+                if (error) {
+                    reject(new Error(error.message));
+                } else {
+                    resolve(result);
+                }
+            });
+        });
 
-    /*async makeDonation(needId, amount) {
-        console.log("trying to update " + needId + ": " + amount + "in needs")
-        try {   
-            const insertId = await new Promise((resolve, reject) => { 
-                let query = "UPDATE needs SET quantity_filled = quantity_filled + " +  amount  + " WHERE id = " + needId + ";"
-                connection.query(query, (error, result) => { 
-                    if (error) reject(new Error(error.message))
-                    resolve(result) 
-                })
-            })
-            console.log(insertId)
-        } catch (error) {
-            console.log(error);
+        // Check if any rows were actually updated and log accordingly
+        if (result.affectedRows > 0) {
+            console.log(`Status updated for needId ${needId}`);
+        } else {
+            console.log(`No record found with needId ${needId} to update.`);
         }
-    }*/
+
+        return {
+            success: true,
+            message: 'Status updated successfully',
+            data: result
+        };
+    } catch (error) {
+        console.log(error);
+        return {
+            success: false,
+            message: 'Failed to update status',
+            error: error.message
+        };
+    }
+}
+
 }
 
 module.exports = CrudService
