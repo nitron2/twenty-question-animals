@@ -1,43 +1,59 @@
-let uploadedFileName
-let disasterId
 
 document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('fileInput');
+    const table = document.getElementById('table');
+    let rowCount = 1;
 
     fileInput.addEventListener('change', function() {
-        uploadedFileName = fileInput.files[0].name
-    })
-})
+        uploadedFileName = fileInput.files[0].name;
+    });
 
-function sumbitCreateDisasterForm(event) { //(event)
+    function addNewRowIfNeeded() {
+        const lastRow = table.querySelector('tr:last-child');
+        const inputs = lastRow.querySelectorAll('input');
+        const allFilled = Array.from(inputs).every(input => input.value !== '');
+        
+        if (allFilled) {
+            rowCount++;
+            const newRow = table.insertRow(-1);
+            const newCell1 = newRow.insertCell(0);
+            const newCell2 = newRow.insertCell(1);
+
+            newCell1.innerHTML = `<input type="text" id="need${rowCount}-name" required>`;
+            newCell2.innerHTML = `<input type="text" id="need${rowCount}-quantity" required>`;
+        }
+    }
+
+    table.addEventListener('input', function(event) {
+        if (event.target.tagName === 'INPUT') {
+            addNewRowIfNeeded();
+        }
+    });
+});
+
+function submitCreateDisasterForm(event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
     const imageUploadStatusDiv = document.getElementById('imageUploadStatus');
 
-    //event.preventDefault(); // Prevent the form from submitting the traditional way
-
     if (uploadedFileName) {
-        const formData = new FormData(document.getElementById('createDisasterForm')); // Use the form's data
+        const formData = new FormData(document.getElementById('createDisasterForm'));
         fetch('http://127.0.0.1:5003/upload-disaster-image', {
             method: 'POST',
-            body: formData, // Send the form data to the server
+            body: formData,
         })
-        .then(response => function() {
-            if (response.ok) {
-                const text = response.text();
-                imageUploadStatusDiv.innerHTML = text; // Display success message
-            } else {
-                imageUploadStatusDiv.innerHTML = 'Failed to upload the file.';
-            }
+        .then(response => response.text())
+        .then(text => {
+            imageUploadStatusDiv.innerHTML = text; // Display success message or failure
         })
-        .catch(error => function() {
+        .catch(error => {
             console.error('Error:', error);
             imageUploadStatusDiv.innerHTML = 'Error uploading file.';
-            return
-        })
+        });
     }
 
     fetch("http://127.0.0.1:5003/create-disaster", {
         headers: {
-            'Content-type' : 'application/json'// What even are naming conventions?!
+            'Content-type' : 'application/json'
         },
         method: 'POST',
         body: JSON.stringify({
@@ -45,51 +61,58 @@ function sumbitCreateDisasterForm(event) { //(event)
             city: document.getElementById('city').value,
             picture: uploadedFileName
         })
-    }) // These are routes, I am told.
+    })
     .then(response => response.json())
-    .catch(error => console.log(error)); //Handle errors in the backend
+    .catch(error => console.log('Error during disaster creation:', error));
+}
 
+function submitCreateDisasterForm(event) {
+    event.preventDefault(); // Prevent the form from submitting traditionally
+    const imageUploadStatusDiv = document.getElementById('imageUploadStatus');
 
-    // now
-};
-
-function showNextFormTest(a, b) {
-    for (var i = 1; i <= 10; i++) { // Assuming you have 10 forms, adjust if needed
-        var formID = document.getElementById("form" + a + i);
-
-        if (formID) {
-            formID.style.display = i === b ? "block" : "none";
-        }
+    // Upload file first if a file was selected
+    if (uploadedFileName) {
+        const formData = new FormData(document.getElementById('createDisasterForm'));
+        fetch('http://127.0.0.1:5003/upload-disaster-image', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.text(); // Return the text if the response is OK
+            } else {
+                throw new Error('Failed to upload file.');
+            }
+        })
+        .then(text => {
+            imageUploadStatusDiv.innerHTML = text; // Display success message
+            submitDisasterDetails(); // Submit other details after image upload
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            imageUploadStatusDiv.innerHTML = error.message;
+        });
+    } else {
+        submitDisasterDetails(); // No file to upload, directly submit other details
     }
 }
 
-function resetPage() {
-    // Reload the current page
-    location.reload();
+// Function to submit disaster details
+function submitDisasterDetails() {
+    fetch("http://127.0.0.1:5003/create-disaster", {
+        headers: {
+            'Content-type' : 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({
+            type: document.getElementById('type').value,
+            city: document.getElementById('city').value,
+            picture: uploadedFileName
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => console.error('Error during disaster creation:', error));
 }
-
-function createListItem(selectedRadioBtn) {
-    var numberOfItems = 5;
-
-    // Get the <ul> element by its ID
-    var myList = document.getElementById("vList" + selectedRadioBtn.charAt(selectedRadioBtn.length - 1));
-
-
-    // Clear existing items in the list
-    myList.innerHTML = "";
-
-    // Create and append <li> elements to the <ul>
-    for (var i = 1; i <= numberOfItems; i++) {
-        var listItem = document.createElement("li");
-        listItem.textContent = "Item " + i + " - " + selectedRadioBtn;
-        myList.appendChild(listItem);
-    }
-}
-
-// Event listener for radio buttons
-document.querySelectorAll('input[name="optionsBttn"]').forEach(function(radioBtn) {
-    radioBtn.addEventListener("change", function() {
-        // Your code here when the radio button state changes
-        createListItem(this.id);
-    });
-});
