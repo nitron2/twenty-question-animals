@@ -92,3 +92,8 @@ https://medium.com/swlh/restful-api-design-get-post-put-patch-delete-a-walkthrou
 | Link donation,.html to index.html | 1.5 | Hayden, James |
 | Code Deliver Page Front End | 1 | Hayden |
 | Code Deliver Page Back End | 0.5 | Hayden |
+| Back End Create Disaster Page | 2 | Hayden |
+| General Refactoring | 2 | Hayden |
+| Resolving Merge Conflicts | 1 | Hayden |
+| Database Refactor | 1 | Hayden |
+| General Debug | 0.5 | Hayden |
