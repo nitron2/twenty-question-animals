@@ -97,3 +97,4 @@ https://medium.com/swlh/restful-api-design-get-post-put-patch-delete-a-walkthrou
 | Resolving Merge Conflicts | 1 | Hayden |
 | Database Refactor | 1 | Hayden |
 | General Debug | 0.5 | Hayden |
+| Comment | 0.5 | Hayden |
