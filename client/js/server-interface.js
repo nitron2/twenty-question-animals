@@ -9,6 +9,9 @@
  * 
  *  */ 
 
+/*
+
+
 //TODO: Undo hard coding for host and port for all of these!
 export async function getAllDisasters() {
     try {
@@ -104,3 +107,4 @@ export async function setNeedStatus(need, status) {
     })
     .catch((error) => console.log('Error:', error))
 }
+*/

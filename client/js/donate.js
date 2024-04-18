@@ -1,3 +1,6 @@
+
+/*
+
 import { getDisasterImageBlob, getAllNeedsOfADisaster, submitDonations, getDisasterById} from './server-interface.js'
 
 let donations = []
@@ -87,4 +90,4 @@ $(`#done`).on('click', function() {
         location.reload()
     }
 })
-
+*/
