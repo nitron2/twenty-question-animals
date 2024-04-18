@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 18, 2024 at 04:05 AM
+-- Generation Time: Apr 18, 2024 at 07:55 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,32 +40,11 @@ CREATE TABLE `disasters` (
 
 INSERT INTO `disasters` (`id`, `type`, `city`, `picture`) VALUES
 (1, 'Dust Storm', 'Phoenix', 'PhoenixDustStorm.png'),
-(2, 'Monster Vs. Alien', 'San Fransico', 'MonstersVersusAliens.jpeg'),
-(92, 'test3', 'test3', 'placeholder.jpeg'),
-(93, 'Test3', 'Test3', 'placeholder.jpeg'),
-(94, 'test', 'test', 'placeholder.jpeg'),
-(95, 'test', 'test', 'placeholder.jpeg'),
-(96, 'asd', 'sdasd', 'placeholder.jpeg'),
-(97, 'saddsa', 'sadasd', 'placeholder.jpeg'),
-(98, 'saddsa', 'sadasd', 'placeholder.jpeg'),
-(99, 'adsdsa', 'sasd', 'placeholder.jpeg'),
-(100, 'dsa', 'sad', 'placeholder.jpeg'),
-(101, 'dsa', 'sad', 'placeholder.jpeg'),
-(102, 'sdfdsf', 'dsfsd', 'placeholder.jpeg'),
-(103, 'sdfdsf', 'dsfsd', 'placeholder.jpeg'),
-(104, 'sdfdsf', 'dsfsd', 'placeholder.jpeg'),
-(105, 'sdfdsf', 'dsfsd', 'placeholder.jpeg'),
-(106, 'dfsdfs', 'fsddfs', 'placeholder.jpeg'),
-(107, 'dsfdsf', 'sdsdf', 'placeholder.jpeg'),
-(108, 'ads', 'ads', 'placeholder.jpeg'),
-(109, 'sad', 'as', 'placeholder.jpeg'),
-(110, 'dasasd', 'asdd', 'placeholder.jpeg'),
-(111, 'afds', 'sadffds', 'placeholder.jpeg'),
-(112, 'afds', 'sadffds', 'placeholder.jpeg'),
-(113, 'Tornado', 'Brooklyn', 'placeholder.jpeg'),
-(114, 'fadfds', 'dsfaadfs', 'placeholder.jpeg'),
-(115, 'adssad', 'asdasd', 'placeholder.jpeg'),
-(116, 'dsfdfs', 'dsf', 'placeholder.jpeg');
+(2, 'Monsters Vs. Aliens', 'San Fransico', 'MonstersVersusAliens.jpeg'),
+(130, 'War', 'New York', 'ai.jpeg'),
+(131, 'Celestial Event', 'Arrakeen', 'eclipse.jpeg'),
+(132, 'Monster Attack', 'Tokyo', 'godzilla.jpeg'),
+(133, 'Holy War', 'Caladan', 'holy-war.webp');
 
 -- --------------------------------------------------------
 
@@ -92,16 +71,27 @@ INSERT INTO `needs` (`id`, `name`, `disaster_id`, `quantity_filled`, `quantity_m
 (2, 'Hats', 1, 1000, 1000, '', 'in_warehouse'),
 (3, 'Gloves', 1, 250, 250, '', 'in_warehouse'),
 (4, 'Volunteers', 2, 500, 500, '', 'in_warehouse'),
-(5, 'Sweaters', 2, 1000, 1000, '', 'delivered'),
-(6, 'Bandages', 2, 250, 250, '', 'in_warehouse'),
-(7, 'adfs', 112, 0, 213, 'Phoenix', 'in_warehouse'),
-(8, 'Volunteers', 113, 0, 500, 'Phoenix', 'in_warehouse'),
-(9, 'Cows', 113, 900, 10000000, 'Phoenix', 'in_warehouse'),
-(10, 'Trees', 113, 0, 2, 'Phoenix', 'in_warehouse'),
-(11, 'adsfdsf', 114, 0, 324324, 'Phoenix', 'in_warehouse'),
-(12, 'asddsa', 115, 0, 231, 'Phoenix', 'in_warehouse'),
-(13, 'dasads', 115, 0, 23232, 'Phoenix', 'in_warehouse'),
-(14, 'sdfdsfdfs', 116, 0, 3232, 'Phoenix', 'in_warehouse');
+(5, 'Sweaters', 2, 1000, 1000, '', 'in_transit'),
+(6, 'Bandages', 2, 250, 250, '', 'delivered'),
+(33, 'Robots', 130, 0, 50000, 'Phoenix', 'in_warehouse'),
+(34, 'GPTs', 130, 0, 42, 'Phoenix', 'in_warehouse'),
+(35, 'Jedi', 130, 0, 1337, 'Phoenix', 'in_warehouse'),
+(36, 'Elon Musk', 130, 0, 1, 'Phoenix', 'in_warehouse'),
+(37, 'Bill Gates', 130, 0, 1, 'Phoenix', 'in_warehouse'),
+(38, 'Glasses', 131, 0, 400, 'Phoenix', 'in_warehouse'),
+(39, 'Cameras', 131, 0, 3, 'Phoenix', 'in_warehouse'),
+(40, 'Dust Filters', 131, 0, 500, 'Phoenix', 'in_warehouse'),
+(41, 'Doctors', 132, 0, 5000, 'Phoenix', 'in_warehouse'),
+(42, 'Guns', 132, 0, 100, 'Phoenix', 'in_warehouse'),
+(43, 'Nuclear Warheads', 132, 0, 400, 'Phoenix', 'in_warehouse'),
+(44, 'Volunteers', 132, 0, 900, 'Phoenix', 'in_warehouse'),
+(45, 'World Leaders', 132, 0, 2, 'Phoenix', 'in_warehouse'),
+(46, 'Stillsuits', 133, 0, 1000000, 'Phoenix', 'in_warehouse'),
+(47, 'Troops', 133, 0, 1000000, 'Phoenix', 'in_warehouse'),
+(48, 'Spice Bags', 133, 0, 1000000, 'Phoenix', 'in_warehouse'),
+(49, 'Swords', 133, 0, 1000000, 'Phoenix', 'in_warehouse'),
+(50, 'Shields', 133, 0, 1000000, 'Phoenix', 'in_warehouse'),
+(51, 'Christopher Walken', 133, 0, 1, 'Phoenix', 'in_warehouse');
 
 -- --------------------------------------------------------
 
@@ -122,24 +112,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `type`) VALUES
-(1, 's', 's', 's', 'Organization'),
-(2, 'Hayden Baldwin', 'haydenb@andrews.edu', 'hwb123321', 'Doctor'),
-(3, 'Hayden Baldwin', 'haydenb@andrews.edu', 'hwb123321', 'Doctor'),
-(4, 'Hayden Baldwin', 'haydenb@andrews.edu', 'hwb123321', 'Doctor'),
-(5, '', '', '', 'Organization'),
-(6, 'Hayden Baldwin', 'haydenb@andrews.edd', '32423234', 'General'),
-(7, 'Hi my name is bob', 'derpder', 'assad', 'Organization');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `warehouses`
---
-
-CREATE TABLE `warehouses` (
-  `id` int(11) NOT NULL,
-  `city` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(2, 'Hayden Baldwin', 'haydenb@andrews.edu', 'password', 'Doctor');
 
 --
 -- Indexes for dumped tables
@@ -164,12 +137,6 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `warehouses`
---
-ALTER TABLE `warehouses`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -177,25 +144,19 @@ ALTER TABLE `warehouses`
 -- AUTO_INCREMENT for table `disasters`
 --
 ALTER TABLE `disasters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `needs`
 --
 ALTER TABLE `needs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `warehouses`
---
-ALTER TABLE `warehouses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
