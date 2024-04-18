@@ -1,4 +1,4 @@
-import { getDisasterImageBlob, getAllNeedsOfADisaster, submitDonations, getDisasterById} from './fetch-disaster-data.js'
+import { getDisasterImageBlob, getAllNeedsOfADisaster, submitDonations, getDisasterById} from './server-interface.js'
 
 let donations = []
 

@@ -1,4 +1,4 @@
-import { getAllNeeds, getDisasterById, setNeedStatus} from './fetch-disaster-data.js';
+import { getAllNeeds, getDisasterById, setNeedStatus} from './server-interface.js';
 
 const NEED_STATUS = { 
     IN_WAREHOUSE: 'in_warehouse',

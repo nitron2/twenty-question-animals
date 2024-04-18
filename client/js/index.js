@@ -1,4 +1,4 @@
-import { getAllDisasters, getAllNeedsOfADisaster, getDisasterImageBlob } from './fetch-disaster-data.js'
+import { getAllDisasters, getAllNeedsOfADisaster, getDisasterImageBlob } from './server-interface.js'
 
 document.addEventListener('DOMContentLoaded', async function() {
     const disasters = await getAllDisasters();

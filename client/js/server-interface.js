@@ -72,7 +72,7 @@ export async function submitDonations(donations) {
         body: JSON.stringify(donations),
         })
         .then(response => response.json()) // Parse the JSON response
-        //.then(data => console.log(data)) // Log the response data
+        .then(data => console.log(data)) // Log the response data
         .catch((error) => {
             console.log('Error:', error);}
         );
