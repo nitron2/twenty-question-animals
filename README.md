@@ -1,15 +1,15 @@
 # chainsaw-fire: FEMA website class project
 
 ## Goals:
-[ ] Figure out all required inputs and how to handle them
-[ ] HTML w/css front page\
-[X] Javascript for the logic for dealing with data\
+[x] Figure out all required inputs and how to handle them
+[x] HTML w/css front page\
+[x] Javascript for the logic for dealing with data\
 [x] Choose a database, SQLite potentially?\
-[ ] Make list of functions that are needed\
-[ ] Find busdrivers eyes\
-[ ] Ensure all requirements are met\
-[ ] Make a requirements list\
-[ ] Figure out the base/minimalized program\
+[x] Make list of functions that are needed\
+[x] Find busdrivers eyes\
+[x] Ensure all requirements are met\
+[x] Make a requirements list\
+[x] Figure out the base/minimalized program\
 [x] Sign up page
 
 ## Non-Goals:
