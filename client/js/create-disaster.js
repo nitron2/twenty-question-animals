@@ -1,11 +1,21 @@
+
+// TODO: Look into this: Not sure if it's better to throw everything inside the DOMConentLoaded listener or not. HB
 document.addEventListener('DOMContentLoaded', function() {
     const needs = document.getElementById('needs');
     let rowCount = 1;
 
+    // Form submission handling.  HB
+    /*
+    *   This form is designed in such a way that disaster basic info, needs, and image
+    *   can all be added on the same page. Initial testing saw this uploading in multiple parts
+    *   and it was both less user-friendly and hard to debug.
+    * 
+    *   The ability to append many items in one form submission is very useful here,
+    *   as we are using Multer, a multipart form submission library.
+    */
     document.getElementById('createDisasterForm').addEventListener('submit', function(event) {
         event.preventDefault();
         const formData = new FormData(this);
-
 
         const city = document.getElementById('city').value
         const type = document.getElementById('type').value
@@ -26,8 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
   
         formData.append('tableData', JSON.stringify(tableData)); // Add table data as a string
-        
+         
+        // TODO: Refactor this to be inside of server-intferface.js, like the rest of the 
+        // front end. HB
         console.log("FormData:" + formData);
+        // TODO: Un hard-code localhost:port.
         fetch('http://127.0.0.1:5003/create-disaster', {
             method: 'POST',
             body: formData
@@ -42,12 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Driver code for visually allowing to add multiple needs in a table.
     needs.addEventListener('input', function(event) {
         if (event.target.tagName === 'INPUT') {
             addNewRowIfNeeded();
         }
     });
 
+    // Note, inputs are not set to required, as adding need to diaster is optional HB
     function addNewRowIfNeeded() {
         const lastRow = needs.querySelector('tr:last-child');
         const inputs = lastRow.querySelectorAll('input');

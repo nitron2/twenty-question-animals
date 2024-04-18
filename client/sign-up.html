@@ -60,6 +60,7 @@
         </div>
     </div>
 <script>
+    //TODO: Un hard-code localhost:port. HB
     function submitFormData() {
         console.log(document.querySelector('input[name="type"]:checked').value)
         fetch("http://127.0.0.1:5003/signup", {

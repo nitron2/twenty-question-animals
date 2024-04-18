@@ -14,29 +14,30 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Optionally, you can display the data on the page
     // Ensure you have an element with the id 'dataDisplay' in your HTML
     if (disasterId) {
+        // Decare Decall Define  
         let disaster = await getDisasterById(disasterId)
-        disaster = disaster[0]
+        disaster = disaster[0] //TODO: Find a better way to inex this. HB
         let cityParagraph = document.getElementById('city')
-        cityParagraph.textContent = disaster.city
-    
         let typeParagraph = document.getElementById('type')
-        typeParagraph.textContent = disaster.type
-    
         let disasterImage = document.getElementById('disaster-image')
         let blob = await getDisasterImageBlob(disaster)
         const imageObjectURL = URL.createObjectURL(blob)
         const imageElement = document.createElement('img')
+        let needs = await getAllNeedsOfADisaster(disaster)
+
+        cityParagraph.textContent = disaster.city
+        typeParagraph.textContent = disaster.type
+    
         imageElement.src = imageObjectURL
         disasterImage.src = imageObjectURL 
     
-    
-        let needs = await getAllNeedsOfADisaster(disaster)
         for (const need of needs){
             addNeedsRow(need)
         }
     }
 })
 
+// Define
 function addNeedsRow(need){
     let row = `<tr scope="row" class="need-row-${need.id}">
                     <td>${need.name}</td>
@@ -77,7 +78,7 @@ async function addDonation(needId, amountToAdd){
     }
 }
 
-// TODO: Later have the page go back to view disasters page
+
 $(`#done`).on('click', function() {
     try{
         submitDonations(donations)

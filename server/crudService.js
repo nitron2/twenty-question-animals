@@ -1,12 +1,14 @@
-// Essnetially, crudService acts as the go-between for 
-// data that has already made its way server-side, to interface with
-// SQL database.
-
-// Keep in mind that the client-server architecture is very much the
-// same as it was on Roblox. You know what you're doing, man. Keep going.
-// Remember when Nicholas told us about Odin project? That was this
-
-// HB
+/**
+ *
+ *  data that has already made its way server-side, to interface with
+ *  SQL database.
+*
+*   Keep in mind that the client-server architecture is very much the
+*   same as it was on Roblox. You know what you're doing, man. Keep going.
+*   Remember when Nicholas told us about Odin project? That was this
+*
+*   Essentially, crudService acts as the go-between for app.js and database
+*/ 
 
 const mysql = require('mysql');
 const dotenv = require('dotenv');
@@ -41,15 +43,7 @@ class CrudService {
 
         try {   
             const insertId = await new Promise((resolve, reject) => { 
-                // We have seen this in server application development before (Villafañe).
-                //const query = "INSERT INTO `people`(`id`, `name`, `date_added`) VALUES ('1','hayden','December 17, 1995 03:24:00'))"
-                const query = "INSERT INTO users (name, email, password, type) VALUES (?, ?, ?, ?);"
-                 // Parameterize to prevent SQL injection 
-                //pool.query(query, (error, result) => { 
-                    // Callback function, or so I'm told.
-                // if (error) reject(new Error(error.message))
-                //    resolve(result) // What does resolve do, specifically?
-                //})
+                const query = "INSERT INTO users (name, email, password, type) VALUES (?, ?, ?, ?);" // Prevent SQL injection. HB
                 connection.query(query, [name, email, password, type], (error, result) => { 
                     // Callback function, or so I'm told.
                     if (error) reject(new Error(error.message))
@@ -133,7 +127,19 @@ class CrudService {
        
     }
 
-    async createNewDisaster(type, city, picture) {
+    /**
+     *  Here, there is a possiblity of the picture stirng being indefined,
+     *  so we have two separate queries for that.
+     * 
+     * @param {string} type 
+     * @param {string} city 
+     * @param {string | undefined} picture 
+     * @returns 
+     * 
+     * HB
+     */
+
+    async createNewDisaster(type, city, picture) { 
         console.log("trying to insert " + type + ": " + city + " " + picture + " into db.")
         try {   
             const insertId = await new Promise((resolve, reject) => { 
@@ -155,9 +161,6 @@ class CrudService {
     }
 
     async createNewNeed(name, disasterId, quantityMax) {
-        console.log("name:" + name)
-        console.log("disasterId:" + disasterId)
-        console.log("quantityMax:" + quantityMax)
         try {
             const result = await new Promise((resolve, reject) => { 
                 let query = "INSERT INTO needs (name, disaster_id, quantity_max) VALUES (?, ?, ?);"
@@ -172,7 +175,8 @@ class CrudService {
             console.log(error)
         }
     }
-
+ 
+    //TODO: Prevent SQL injection. HB
     async submitDonations(donations) {
         console.log('donations: ' + donations)
         for (const donationAddition of donations) {

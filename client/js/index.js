@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     console.log("disasters: " + disasters)
     console.log(disasters[0])
     if (disasters) {
-        initializeBlankCards('cardContainer', disasters.length)
-        populateBlankDisastersCards(disasters)
+         initializeBlankCards('cardContainer', disasters.length)
+        await populateDisasterCards(disasters)
     }
 })
     
@@ -15,27 +15,35 @@ function initializeBlankCards(containerId, numberOfCards) {
     for (var i = 1; i <= numberOfCards; i++) {
         var card = document.createElement('div');
         card.className = 'card';
-        //card.textContent = 'Card ' + i; //?
+
         cardContainer.appendChild(card);
     }
 }
 
-async function populateBlankDisastersCards(disasters) {
+/**
+ *  All elements that query database or any part of back-end 
+ *  for data should be asyncronous. HB
+ */
+
+async function populateDisasterCards(disasters) {
     for (let i = 0; i <= disasters.length; i++) { 
         let disaster = disasters[i]
-        console.log('city: ' + disaster.city)
         let card = document.getElementById('cardContainer').querySelector(`.card:nth-child(${i+1})`);
-        if (card) {
-            let cardContainer = document.createElement('div');
-            cardContainer.className = 'card-container';
-            addHeaderToCard(cardContainer, disaster.city)
-            addHeaderToCard(cardContainer, disaster.type)
-            await addImageToCard(cardContainer, disaster)
-            await addNeedsToCard(cardContainer, disaster)
-            addDonateButtonToCard(disaster.id, cardContainer)
-            card.appendChild(cardContainer);
+        if (disaster && card) {
+            createDisasterCard(card, disaster)
         }
     }
+}
+
+async function createDisasterCard(card, disaster) {
+    let cardContainer = document.createElement('div');
+    cardContainer.className = 'card-container';
+    addHeaderToCard(cardContainer, disaster.city)
+    addHeaderToCard(cardContainer, disaster.type)
+    await addImageToCard(cardContainer, disaster)
+    await addNeedsToCard(cardContainer, disaster)
+    addDonateButtonToCard(disaster.id, cardContainer)
+    card.appendChild(cardContainer);
 }
 
 function addHeaderToCard(cardContainer, text) {
