@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         const formData = new FormData(this);
 
+
         const city = document.getElementById('city').value
         const type = document.getElementById('type').value
         console.log('city:' + city)
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
         formData.append('tableData', JSON.stringify(tableData)); // Add table data as a string
         
-        console.log(tableData)
+        console.log("FormData:" + formData);
         fetch('http://127.0.0.1:5003/create-disaster', {
             method: 'POST',
             body: formData
