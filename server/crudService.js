@@ -13,6 +13,7 @@ const dotenv = require('dotenv');
 const { resolve } = require('path');
 const { rejects } = require('assert');
 const { error } = require('console');
+const { query } = require('express');
 let instance = null;
 dotenv.config()
 
@@ -142,12 +143,33 @@ class CrudService {
             }
                 connection.query(query, [type, city, picture], (error, result) => { 
                     if (error) reject(new Error(error.message))
-                    resolve(result) 
+                    resolve(result.insertId) 
                 })
             })
             console.log(insertId)
+            return insertId;
         } catch (error) {
             console.log(error);
+            return undefined;
+        }
+    }
+
+    async createNewNeed(name, disasterId, quantityMax) {
+        console.log("name:" + name)
+        console.log("disasterId:" + disasterId)
+        console.log("quantityMax:" + quantityMax)
+        try {
+            const result = await new Promise((resolve, reject) => { 
+                let query = "INSERT INTO needs (name, disaster_id, quantity_max) VALUES (?, ?, ?);"
+
+                connection.query(query, [name, disasterId, quantityMax], (error, results) => { 
+                    if (error) reject(new Error(error.message))
+                    resolve(results) 
+                })
+            })
+            console.log('insertId for need: ' + result.insertId) // Use result.insertId
+        } catch (error) {
+            console.log(error)
         }
     }
 

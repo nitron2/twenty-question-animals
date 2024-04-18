@@ -17,18 +17,39 @@ app.use(express.urlencoded({extended : false}))
 // Require the upload middleware
 const upload = require('./upload-disaster-image');
 
+app.post('/create-disaster', upload.single('image'), async (req, res) => {
+    const db = crudService.getCrudServiceIstance()
+    
+    const tableData = JSON.parse(req.body.tableData); // Assuming table data is sent as JSON string
+    const city = req.body.city
+    const type = req.body.type
+    const picture = req.body.file
+    let pictureName = undefined;
 
-app.post('/upload-disaster-image', upload.single('file'), (request, response) => {
-  response.send('Disaster created successfully.')
+    if (picture) {
+        pictureName = picture.filename
+    }
+
+    console.log("PIC:" + pictureName)
+    
+    if (city && type) {
+        let disasterId = await db.createNewDisaster(type, city, pictureName)
+        disasterId
+
+        console.log("disasterId: " + disasterId)
+        if (disasterId) {
+            for (row of tableData) {
+                const name = row[0]
+                const qauntity = row[1]
+                if (name && qauntity) {
+                    db.createNewNeed(row[0], disasterId, row[1]) //Name, disId, Qty
+                }
+            }
+        }
+    }
+
 });
 
-app.post('/create-disaster', (request, response) => {
-    const { type, city, picture} = request.body; 
-    const db = crudService.getCrudServiceIstance();
-    const result = db.createNewDisaster(type, city, picture);
-    result
-    .catch(error => console.log(error));
-});
 
 app.post('/signup', (request, response) => {
     const { name, email, password, type } = request.body; 
@@ -58,7 +79,6 @@ app.get('/get-all-disasters', (request, response) => {
 
 app.get('/get-all-needs', (request, response) => {
     const db = crudService.getCrudServiceIstance()
-    const disasterId = request.query.disasterId; // Access the name sent by the client
     const result = db.getAllNeeds()
     result
     .then(data => response.json({data : data}))
