@@ -1,6 +1,81 @@
+document.addEventListener('DOMContentLoaded', async function(){
+    try {
+        let index = 0
 
+        const questions = await getAllQuestions()
+        let answers = []
+
+        const dnas = await getAllDNAs()
+
+        const yes = document.getElementById("yes")
+        const no = document.getElementById("no")
+        const questionH3 = document.getElementById('question')
+
+
+        if (questions) {
+            questionH3.innerText = questions[0].text
+        }
+        
+        yes.addEventListener('click', function() {
+            answers[index] = 1
+            advanceNextQuestion()
+        })
+        
+        no.addEventListener('click', function() {
+            answers[index] = 0
+            advanceNextQuestion()
+        })
+        
+        function advanceNextQuestion() {
+            index++;
+            if (index == 20) {
+                print("Most Sim:" + toString(findMostSimilarArray(answers,dnas)))
+            }
+            let question = questions[index]
+            questionH3.innerText = question.text
+        }
+        
+    } catch (error) {
+        console.error('Error fetching data: ', error); // Log any errors
+        return undefined; // Return an empty array or appropriate value in case of an error
+    }
+})
+
+function findMostSimilarArray(targetArray, arrayOfArrays) {
+    let maxSimilarity = 0;
+    let mostSimilarArray = null;
+
+    arrayOfArrays.forEach(candidateArray => {
+        let similarityScore = 0;
+
+        for (let i = 0; i < targetArray.length; i++) {
+            if (targetArray[i] === candidateArray[i]) {
+                similarityScore++;
+            }
+        }
+
+        if (similarityScore > maxSimilarity) {
+            maxSimilarity = similarityScore;
+            mostSimilarArray = candidateArray;
+        }
+    });
+
+    return mostSimilarArray;
+}
+
+
+async function getAllQuestions() {
+    const response = await fetch('http://127.0.0.1:5003/get-all-questions')
+    const data = await response.json() // Parse the JSON from the response
+    return Object.values(data)[0] // Assuming the structure needs this
+}
+
+async function getAllDNAs() {
+    const response = await fetch('http://127.0.0.1:5003/get-all-dnas')
+    const data = await response.json() // Parse the JSON from the response
+    return Object.values(data)[0] // Assuming the structure needs this
+}
 /*
-
 import { getDisasterImageBlob, getAllNeedsOfADisaster, submitDonations, getDisasterById} from './server-interface.js'
 
 let donations = []

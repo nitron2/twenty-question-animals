@@ -22,7 +22,7 @@ dotenv.config()
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    database: 'fema',
+    database: 'twenty-questions',
     port:'3306'
 })
 
@@ -36,7 +36,41 @@ class CrudService {
     static getCrudServiceIstance() {
         return instance ? instance : new CrudService();
     }
-    
+
+    async getAllQuestions() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM questions;";
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results)
+                })
+            });
+            console.log(response)
+            return response
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async getAllDNAs() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM dnas;";
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results)
+                })
+            });
+            console.log(response)
+            return response
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    /*
     // what do you think we should do next? confirm that everything actually got added to db correct;y
     async signUpNewUser(name, email, password, type) {
         console.log("trying to insert " + name + " into db.")
@@ -56,22 +90,7 @@ class CrudService {
         }
     }
 
-    async getAllDisasters() {
-        try {
-            const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM disasters;";
-
-                connection.query(query, (err, results) => {
-                    if (err) reject(new Error(err.message));
-                    resolve(results)
-                })
-            });
-            console.log(response)
-            return response
-        } catch (error) {
-            console.log(error)
-        }
-    }
+   
 
     async getAllNeeds() {
         try {
@@ -126,18 +145,6 @@ class CrudService {
         }
        
     }
-
-    /**
-     *  Here, there is a possiblity of the picture stirng being indefined,
-     *  so we have two separate queries for that.
-     * 
-     * @param {string} type 
-     * @param {string} city 
-     * @param {string | undefined} picture 
-     * @returns 
-     * 
-     * HB
-     */
 
     async createNewDisaster(type, city, picture) { 
         console.log("trying to insert " + type + ": " + city + " " + picture + " into db.")
@@ -230,8 +237,8 @@ class CrudService {
             error: error.message
         };
     }
-}
-
+    }
+    */
 }
 
 module.exports = CrudService

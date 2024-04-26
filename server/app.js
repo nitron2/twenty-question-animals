@@ -11,6 +11,26 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended : false}))
 
+app.listen(process.env.PORT, () => console.log('app is running on port', PORT=process.env.PORT));
+
+app.get('/get-all-questions', (request, response) => {
+    const db = crudService.getCrudServiceIstance()
+    const result = db.getAllQuestions()
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => {console.log(err)})
+})
+
+
+app.get('/get-all-dnas', (request, response) => {
+    const db = crudService.getCrudServiceIstance()
+    const result = db.getAllDNAs()
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => {console.log(err)})
+})
+
+/*
 // Here we create our routes. Read more about routes 
 // HB
 
@@ -127,4 +147,5 @@ app.put('/set-need-status', (request, response) => {
 
 
 console.log(process.env.PORT)
-app.listen(process.env.PORT, () => console.log('app is running on port', PORT=process.env.PORT));
+*/
+
