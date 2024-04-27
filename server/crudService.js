@@ -69,176 +69,36 @@ class CrudService {
         }
     }
 
+    async addAnimal(body) {
+        if (body) {
+            if(body.animal == null) {
+                throw new Error("Animal Missing")
+            }
 
-    /*
-    // what do you think we should do next? confirm that everything actually got added to db correct;y
-    async signUpNewUser(name, email, password, type) {
-        console.log("trying to insert " + name + " into db.")
-
-        try {   
-            const insertId = await new Promise((resolve, reject) => { 
-                const query = "INSERT INTO users (name, email, password, type) VALUES (?, ?, ?, ?);" // Prevent SQL injection. HB
-                connection.query(query, [name, email, password, type], (error, result) => { 
-                    // Callback function, or so I'm told.
-                    if (error) reject(new Error(error.message))
-                    resolve(result) // What does resolve do, specifically?
-                })
-            })
-            console.log(insertId)
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-   
-
-    async getAllNeeds() {
-        try {
-            const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM needs;";
-                console.log('DERP!')
-                connection.query(query, (err, results) => {
-                    if (err) reject(new Error(err.message));
-                    resolve(results)
-                })
-            });
-            console.log(response)
-            return response
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    async getDisasterById(disasterId) {
-        try {
-            const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM disasters WHERE id = " + disasterId + ";";
-                connection.query(query, (err, results) => {
-                    if (err) reject(new Error(err.message));
-                    resolve(results)
-                })
-            });
-            console.log(response)
-            return response
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
-    async getAllNeedsOfADisaster(disasterId) {
-        if (disasterId) {
+            if(body.dna == null ) {
+                throw new Error("DNA Missing")
+            }
+            
             try {
-                const response = await new Promise((resolve, reject) => {
-                    const query = "SELECT * FROM needs WHERE needs.disaster_id = " + disasterId + ";";
-                    connection.query(query, (err, results) => {
-                        if (err) reject(new Error(err.message));
-                        resolve(results)
+                const result = await new Promise((resolve, reject) => { 
+                    let query = "INSERT INTO dnas (animal, firstq, secondq...) VALUES (?, ?, ?,...);"
+        
+                    connection.query(query, [name, disasterId, quantityMax], (error, results) => { 
+                        if (error) reject(new Error(error.message))
+                        resolve(results) 
                     })
-                });
-                console.log(response)
-                return response
+                })
+                console.log('insertId for need: ' + result.insertId) // Use result.insertId
             } catch (error) {
                 console.log(error)
             }
         } else {
-            throw new Error('No disaster Id provided')
-        }
-       
-    }
-
-    async createNewDisaster(type, city, picture) { 
-        console.log("trying to insert " + type + ": " + city + " " + picture + " into db.")
-        try {   
-            const insertId = await new Promise((resolve, reject) => { 
-                let query
-                if (picture) {query = "INSERT INTO disasters (type, city, picture) VALUES (?, ?, ?);"}
-                else {query = "INSERT INTO disasters (type, city) VALUES (?, ?);"
-            }
-                connection.query(query, [type, city, picture], (error, result) => { 
-                    if (error) reject(new Error(error.message))
-                    resolve(result.insertId) 
-                })
-            })
-            console.log(insertId)
-            return insertId;
-        } catch (error) {
-            console.log(error);
-            return undefined;
+            throw new Error("Request body missing.")
         }
     }
-
-    async createNewNeed(name, disasterId, quantityMax) {
-        try {
-            const result = await new Promise((resolve, reject) => { 
-                let query = "INSERT INTO needs (name, disaster_id, quantity_max) VALUES (?, ?, ?);"
-
-                connection.query(query, [name, disasterId, quantityMax], (error, results) => { 
-                    if (error) reject(new Error(error.message))
-                    resolve(results) 
-                })
-            })
-            console.log('insertId for need: ' + result.insertId) // Use result.insertId
-        } catch (error) {
-            console.log(error)
-        }
-    }
- 
-    //TODO: Prevent SQL injection. HB
-    async submitDonations(donations) {
-        console.log('donations: ' + donations)
-        for (const donationAddition of donations) {
-            try {   
-                console.log('donation addition: ' + donationAddition)
-                const insertId = await new Promise((resolve, reject) => { 
-                    let query = "UPDATE needs SET quantity_filled = quantity_filled + " +  donationAddition[1]  + " WHERE id = " + donationAddition[0] + ";"
-                    connection.query(query, (error, result) => { 
-                        if (error) reject(new Error(error.message))
-                        resolve(result) 
-                    })
-                })
-                console.log(insertId)
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }
-    
-    async setNeedStatus(needId, status) {
-    try {
-        const result = await new Promise((resolve, reject) => {
-            // Use parameterized query to avoid SQL injection
-            const query = "UPDATE needs SET status = ? WHERE id = ?";
-            connection.query(query, [status, needId], (error, result) => {
-                if (error) {
-                    reject(new Error(error.message));
-                } else {
-                    resolve(result);
-                }
-            });
-        });
-
-        // Check if any rows were actually updated and log accordingly
-        if (result.affectedRows > 0) {
-            console.log(`Status updated for needId ${needId}`);
-        } else {
-            console.log(`No record found with needId ${needId} to update.`);
-        }
-
-        return {
-            success: true,
-            message: 'Status updated successfully',
-            data: result
-        };
-    } catch (error) {
-        console.log(error);
-        return {
-            success: false,
-            message: 'Failed to update status',
-            error: error.message
-        };
-    }
-    }
-    */
 }
+
+
+
 
 module.exports = CrudService
