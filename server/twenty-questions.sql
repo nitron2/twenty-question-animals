@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 18, 2024 at 10:38 PM
+-- Generation Time: Apr 27, 2024 at 09:54 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,27 +29,35 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `dnas` (
   `animal` varchar(32) NOT NULL,
-  `is_insect` tinyint(1) NOT NULL DEFAULT 0,
-  `lives_in_water` tinyint(1) NOT NULL DEFAULT 0,
-  `is_bigger_than_a_human` tinyint(1) NOT NULL DEFAULT 0,
   `has_fur_feathers_or_scales` tinyint(1) NOT NULL DEFAULT 0,
   `has_horn_tusk_or_long_neck` tinyint(1) NOT NULL DEFAULT 0,
-  `is_carnivore` tinyint(1) NOT NULL DEFAULT 0,
-  `has_stripes_or_spots` tinyint(1) NOT NULL DEFAULT 0,
-  `is_nocturnal` tinyint(1) NOT NULL DEFAULT 0,
-  `is_social` tinyint(1) NOT NULL DEFAULT 0,
-  `is_mammal` tinyint(1) NOT NULL DEFAULT 0,
   `has_long_lifespan` tinyint(1) NOT NULL DEFAULT 0,
-  `is_loud` tinyint(1) NOT NULL DEFAULT 0,
-  `is_fast` tinyint(1) NOT NULL DEFAULT 0,
+  `has_stripes_or_spots` tinyint(1) NOT NULL DEFAULT 0,
+  `is_bigger_than_a_human` tinyint(1) NOT NULL DEFAULT 0,
+  `is_brown` tinyint(1) NOT NULL DEFAULT 0,
+  `is_carnivore` tinyint(1) NOT NULL DEFAULT 0,
   `is_endangered` tinyint(1) NOT NULL DEFAULT 0,
-  `is_pet` tinyint(1) NOT NULL DEFAULT 0,
+  `is_fast` tinyint(1) NOT NULL DEFAULT 0,
   `is_featured_in_madagascar_movie` tinyint(1) NOT NULL DEFAULT 0,
   `is_friendly_to_humans` tinyint(1) NOT NULL DEFAULT 0,
-  `is_smaller_than_a_microwave` tinyint(1) NOT NULL DEFAULT 0,
+  `is_insect` tinyint(1) NOT NULL DEFAULT 0,
+  `is_loud` tinyint(1) NOT NULL DEFAULT 0,
+  `is_mammal` tinyint(1) NOT NULL DEFAULT 0,
   `is_native_to_united_states` tinyint(1) NOT NULL DEFAULT 0,
-  `is_brown` tinyint(1) NOT NULL DEFAULT 0
+  `is_nocturnal` tinyint(1) NOT NULL DEFAULT 0,
+  `is_pet` tinyint(1) NOT NULL DEFAULT 0,
+  `is_smaller_than_a_microwave` tinyint(1) NOT NULL DEFAULT 0,
+  `is_social` tinyint(1) NOT NULL DEFAULT 0,
+  `lives_in_water` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dnas`
+--
+
+INSERT INTO `dnas` (`animal`, `has_fur_feathers_or_scales`, `has_horn_tusk_or_long_neck`, `has_long_lifespan`, `has_stripes_or_spots`, `is_bigger_than_a_human`, `is_brown`, `is_carnivore`, `is_endangered`, `is_fast`, `is_featured_in_madagascar_movie`, `is_friendly_to_humans`, `is_insect`, `is_loud`, `is_mammal`, `is_native_to_united_states`, `is_nocturnal`, `is_pet`, `is_smaller_than_a_microwave`, `is_social`, `lives_in_water`) VALUES
+('Blue Whale', 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1),
+('Jumping Spider', 0, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -96,7 +104,8 @@ INSERT INTO `questions` (`question`, `text`) VALUES
 -- Indexes for table `dnas`
 --
 ALTER TABLE `dnas`
-  ADD PRIMARY KEY (`animal`);
+  ADD PRIMARY KEY (`animal`),
+  ADD KEY `is_insect` (`is_insect`);
 
 --
 -- Indexes for table `questions`
