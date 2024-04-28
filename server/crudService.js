@@ -71,19 +71,17 @@ class CrudService {
 
     async addAnimal(body) {
         if (body) {
-            if(body.animal == null) {
-                throw new Error("Animal Missing")
-            }
+            const animal = body.animal
+            const dna = body.dna
 
-            if(body.dna == null ) {
-                throw new Error("DNA Missing")
-            }
+            if (animal == null) throw new Error("Animal Missing")
+            if (dna == null ) throw new Error("DNA Missing")
             
             try {
                 const result = await new Promise((resolve, reject) => { 
-                    let query = "INSERT INTO dnas (animal, firstq, secondq...) VALUES (?, ?, ?,...);"
+                    let query = "INSERT INTO dnas (animal, has_fur_feathers_or_scales, has_horn_tusk_or_long_neck, has_long_lifespan, has_stripes_or_spots, is_bigger_than_a_human, is_brown, is_carnivore, is_endangered, is_fast, is_featured_in_madagascar_movie, is_friendly_to_humans, is_insect, is_loud, is_mammal, is_native_to_united_states, is_nocturnal, is_pet, is_smaller_than_a_microwave, is_social, lives_in_water) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);"
         
-                    connection.query(query, [name, disasterId, quantityMax], (error, results) => { 
+                    connection.query(query, [animal, dna[0], dna[1], dna[2], dna[3], dna[4], dna[5], dna[6], dna[7], dna[8], dna[9], dna[10], dna[11], dna[12], dna[13], dna[14], dna[15], dna[16],dna[17], dna[18], dna[19]], (error, results) => { 
                         if (error) reject(new Error(error.message))
                         resolve(results) 
                     })
