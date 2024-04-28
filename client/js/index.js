@@ -1,5 +1,13 @@
+const GAME_STATES = {
+    PLAYING: 'PLAYING',
+    GUESSED: 'GUESSED',
+    PLAYER_WIN: 'PLAYER_WIN',
+    PLAYER_LOSE: 'PLAYER_LOSE'
+  };
+  
 document.addEventListener('DOMContentLoaded', async function(){
     try {
+        let currentGameState = GAME_STATES.PLAYING
         let index = 0
 
         const questions = await getAllQuestions()
@@ -11,30 +19,43 @@ document.addEventListener('DOMContentLoaded', async function(){
         const questionH3 = document.getElementById('question')
         const animalSubmission = document.getElementById('animal-submission')
 
-        let gameOver = false
-
         animalSubmission.style.display = "none"
 
         if (questions) {
             questionH3.innerText = questions[0].text
         }
         
-        yes.addEventListener('click', function() {
-            if(!gameOver) {
-                answers[index] = 1
-                advanceNextQuestion()
-            } else {
-                location.reload()
+        yes.addEventListener('click', async function() {
+            switch(currentGameState) {
+                case GAME_STATES.PLAYING:
+                    answers[index] = 1
+                    advanceNextQuestion()
+                    break
+                case GAME_STATES.GUESSED: // Player: Bah! You beat me! How frustrating.
+                    currentGameState = GAME_STATES.PLAYER_LOSE
+                    location.reload()
+                    break
+                case GAME_STATES.PLAYER_WIN:
+                    await addAnimal(animalSubmission.value, answers)
+                    location.reload()
+                    break
             }
         })
         
         no.addEventListener('click', function() {
-            if(!gameOver) {
-                answers[index] = 0
-                advanceNextQuestion()
-            } else {
-                console.log("We need to add this animal into the db")
-                addAnimal(animalSubmission.value, answers)
+            switch(currentGameState) {
+                case GAME_STATES.PLAYING:
+                    answers[index] = 0
+                    advanceNextQuestion()
+                    break
+                case GAME_STATES.GUESSED: //Player: NO! you got my animal wrong
+                    currentGameState = GAME_STATES.PLAYER_WIN
+                    animalSubmission.style.display = "block"
+                    questionH3.innerText = "Type the name of the animal you were thinking of. Would you like us to add it?"
+                    break
+                case GAME_STATES.PLAYER_WIN: // Okay, this is not your animal....
+                    location.reload()
+                    break
             }
         })
         
@@ -42,9 +63,7 @@ document.addEventListener('DOMContentLoaded', async function(){
             index++;
             if (index == 20) {
                 questionH3.innerText = ("Is your animal a " + (findMostSimilarAnimal(answers,dnas)) + "?")
-                gameOver = true;
-                animalSubmission.style.display = "block"
-                questionH3.innerText = "Type the name of the animal you were thinking of. Would you like us to add it?"
+                currentGameState = GAME_STATES.GUESSED
                 return
             }
             let question = questions[index]
@@ -97,8 +116,8 @@ async function getAllDNAs() {
 }
 
 async function addAnimal(animal, dna) {
-    fetch("http://127.0.0.1:5003/add-animl", {
-        method: 'PUT',
+    fetch("http://127.0.0.1:5003/add-animal", {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
