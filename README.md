@@ -46,4 +46,10 @@ https://medium.com/swlh/restful-api-design-get-post-put-patch-delete-a-walkthrou
  
  | Activity | Hours | Contributor |
 | -------- | ------- | ----------|
-|  |  | Hayden |
+| Set up dev environment | 0.5 | Hayden |
+| Set up database + add questions | 1 hr | Hayden |
+| Build index.html | 0.5 hr | Hayden |
+| Front-end logic | 1 hr | Hayden |
+| Add Animal Backend logic | 1 hr | Hayden |
+| Debug Backend | 0.5 | Hayden |
+| Debug game logic | 0.5 | Hayden |
