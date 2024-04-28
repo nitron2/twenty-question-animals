@@ -1,4 +1,4 @@
-# chainsaw-fire: FEMA website class project
+# Simple 20 Questions
 
 **Note: Every commented function will be signed by contributors.**
 
