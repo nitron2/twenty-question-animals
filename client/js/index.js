@@ -4,6 +4,10 @@ const GAME_STATES = {
     PLAYER_WIN: 'PLAYER_WIN',
     PLAYER_LOSE: 'PLAYER_LOSE'
   };
+
+/**
+ * Simple game logic. Does not need to be abstracted very much
+ */
   
 document.addEventListener('DOMContentLoaded', async function(){
     try {
@@ -24,6 +28,10 @@ document.addEventListener('DOMContentLoaded', async function(){
         if (questions) {
             questionH3.innerText = questions[0].text
         }
+
+        /**
+         * Should probably be refactored to follow DRY
+         */
         
         yes.addEventListener('click', async function() {
             switch(currentGameState) {
@@ -41,6 +49,10 @@ document.addEventListener('DOMContentLoaded', async function(){
                     break
             }
         })
+
+        /**
+         * Should probably be refactored to follow DRY
+         */
         
         no.addEventListener('click', function() {
             switch(currentGameState) {
@@ -76,6 +88,15 @@ document.addEventListener('DOMContentLoaded', async function(){
     }
 })
 
+/**
+ * Uses Hamming distance similarity score to determine closest animal "DNA".
+ * Not impressed with the time complexity of this aglorithm, however.
+ * 
+ * @param {Array} targetArray 
+ * @param {Array} arrayOfArrays 
+ * @returns 
+ */
+
 function findMostSimilarAnimal(targetArray, arrayOfArrays) {
     let maxSimilarity = 0;
     let mostSimilarAnimal = null;
@@ -102,6 +123,9 @@ function findMostSimilarAnimal(targetArray, arrayOfArrays) {
     return mostSimilarAnimal;
 }
 
+/**
+ * Communicate with the server to pull questions and dnas and to add animals as well.
+ */
 
 async function getAllQuestions() {
     const response = await fetch('http://127.0.0.1:5003/get-all-questions')
